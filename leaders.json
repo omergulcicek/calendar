@@ -1,29 +1,51 @@
 {
-  "calendarName": "Leaders",
+  "calendarName": "🤲🏻 Anma Günleri",
+  "calendarDesc": "Önemli liderlerin doğum ve vefat günleri",
+  "slug": "leaders",
   "events": [
     {
+      "id": "mehmet-akif-dogum",
       "summary": "Doğum: Mehmet Âkif Ersoy",
       "description": "20 Aralık 1873 – İstanbul\n\nİstiklâl Marşı’nın şairi, Safahat’ın yazarı. Millî Mücadele’nin manevi sesi oldu, dürüstlüğüyle örnek şahsiyet kabul edildi.",
       "month": 12,
-      "day": 20
+      "day": 20,
+      "location": "İstanbul",
+      "url": "https://tr.wikipedia.org/wiki/Mehmet_%C3%82kif_Ersoy",
+      "tags": ["leader", "poet"],
+      "durationDays": 1
     },
     {
+      "id": "mehmet-akif-vefat",
       "summary": "Vefat: Mehmet Âkif Ersoy",
       "description": "27 Aralık 1936 – İstanbul\n\nİstiklâl Marşı’nın şairi, Safahat’ın yazarı. Millî Mücadele’nin manevi sesi oldu, dürüstlüğüyle örnek şahsiyet kabul edildi.",
       "month": 12,
-      "day": 27
+      "day": 27,
+      "location": "İstanbul",
+      "url": "https://tr.wikipedia.org/wiki/Mehmet_%C3%82kif_Ersoy",
+      "tags": ["leader", "poet"],
+      "durationDays": 1
     },
     {
+      "id": "necip-fazil-dogum",
       "summary": "Doğum: Necip Fazıl Kısakürek",
       "description": "26 Mayıs 1904 – İstanbul\n\nŞair, yazar, fikir adamı; Büyük Doğu hareketinin öncüsü. Metafizik arayışlarıyla muhafazakâr edebiyatın en güçlü sesi oldu.",
       "month": 5,
-      "day": 26
+      "day": 26,
+      "location": "İstanbul",
+      "url": "https://tr.wikipedia.org/wiki/Necip_Faz%C4%B1l_K%C4%B1sak%C3%BCrek",
+      "tags": ["leader", "writer"],
+      "durationDays": 1
     },
     {
+      "id": "necip-fazil-vefat",
       "summary": "Vefat: Necip Fazıl Kısakürek",
       "description": "25 Mayıs 1983 – İstanbul\n\nŞair, yazar, fikir adamı; Büyük Doğu hareketinin öncüsü. Metafizik arayışlarıyla muhafazakâr edebiyatın en güçlü sesi oldu.",
       "month": 5,
-      "day": 25
+      "day": 25,
+      "location": "İstanbul",
+      "url": "https://tr.wikipedia.org/wiki/Necip_Faz%C4%B1l_K%C4%B1sak%C3%BCrek",
+      "tags": ["leader", "writer"],
+      "durationDays": 1
     }
   ]
 }
