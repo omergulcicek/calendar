@@ -1,3 +1,4 @@
+
 {
   "calendarName": "🤲🏻 Anma Günleri",
   "calendarDesc": "Önemli liderlerin doğum ve vefat günleri",
@@ -358,9 +359,9 @@
     {
       "id": "kanuni-sultan-suleyman-vefat",
       "summary": "Vefat: Kanuni Sultan Süleyman",
-      "description": "6 Eylül 1566 – Zigetvar\n\n46 yıllık saltanatında hukuk ve idareyi derledi; Süleymaniye gibi eserlerle şehir mimarisini taçlandırdı. Avrupa ve doğuda geniş cephelerde seferler yürüttü.",
+      "description": "7 Eylül 1566 – Zigetvar\n\n46 yıllık saltanatında hukuk ve idareyi derledi; Süleymaniye gibi eserlerle şehir mimarisini taçlandırdı. Avrupa ve doğuda geniş cephelerde seferler yürüttü.",
       "month": 9,
-      "day": 6,
+      "day": 7,
       "location": "Zigetvar",
       "url": "https://tr.wikipedia.org/wiki/I._S%C3%BCleyman",
       "tags": ["sultan", "statesman"],
@@ -418,6 +419,149 @@
       "day": 15,
       "location": "Kosova Ovası",
       "url": "https://tr.wikipedia.org/wiki/I._Murad",
+      "tags": ["sultan", "statesman"],
+      "durationDays": 1
+    },
+    {
+      "id": "ii-murad-vefat",
+      "summary": "Vefat: II. Murad",
+      "description": "3 Şubat 1451 – Edirne\n\nİki kez tahta çıkan hükümdar; Varna (1444) ve II. Kosova (1448) zaferleriyle Haçlı ittifaklarını durdurdu, Balkan dengesini Osmanlı lehine çevirdi. Devlet istikrarını koruyan askerî ve malî düzenlemelerle kurumsallaşmayı güçlendirdi.",
+      "month": 2,
+      "day": 3,
+      "location": "Edirne",
+      "url": "https://tr.wikipedia.org/wiki/II._Murad",
+      "tags": ["sultan", "statesman"],
+      "durationDays": 1
+    },
+    {
+      "id": "ii-bayezid-dogum",
+      "summary": "Doğum: II. Bayezid (Veli)",
+      "description": "3 Aralık 1447 – Dimetoka\n\nCem Sultan buhranını yönetti; doğuda Safevî baskısına karşı denge siyaseti izledi. Endülüs’ten sürülen Yahudilere kapı açarak imparatorluğun ticari ve ilmî hayatını zenginleştirdi.",
+      "month": 12,
+      "day": 3,
+      "location": "Dimetoka",
+      "url": "https://tr.wikipedia.org/wiki/II._Bayezid",
+      "tags": ["sultan", "statesman"],
+      "durationDays": 1
+    },
+    {
+      "id": "ii-bayezid-vefat",
+      "summary": "Vefat: II. Bayezid (Veli)",
+      "description": "26 Mayıs 1512 – Dimetoka\n\nCem Sultan buhranını yönetti; doğuda Safevî baskısına karşı denge siyaseti izledi. Endülüs’ten sürülen Yahudilere kapı açarak imparatorluğun ticari ve ilmî hayatını zenginleştirdi.",
+      "month": 5,
+      "day": 26,
+      "location": "Dimetoka",
+      "url": "https://tr.wikipedia.org/wiki/II._Bayezid",
+      "tags": ["sultan", "statesman"],
+      "durationDays": 1
+    },
+    {
+      "id": "iii-selim-dogum",
+      "summary": "Doğum: III. Selim",
+      "description": "24 Aralık 1761 – İstanbul\n\nNizam-ı Cedid ile ordu ve maliyede kapsamlı modernleşme başlattı; daimî elçiliklerle Avrupa’yla kurumsal temas tesis etti. Islahatları Yeniçeri direnciyle karşılaşsa da merkezî reform geleneğine yön verdi.",
+      "month": 12,
+      "day": 24,
+      "location": "İstanbul",
+      "url": "https://tr.wikipedia.org/wiki/III._Selim",
+      "tags": ["sultan", "statesman"],
+      "durationDays": 1
+    },
+    {
+      "id": "iii-selim-vefat",
+      "summary": "Vefat: III. Selim",
+      "description": "28 Temmuz 1808 – İstanbul\n\nNizam-ı Cedid ile ordu ve maliyede kapsamlı modernleşme başlattı; daimî elçiliklerle Avrupa’yla kurumsal temas tesis etti. Islahatları Yeniçeri direnciyle karşılaşsa da merkezî reform geleneğine yön verdi.",
+      "month": 7,
+      "day": 28,
+      "location": "İstanbul",
+      "url": "https://tr.wikipedia.org/wiki/III._Selim",
+      "tags": ["sultan", "statesman"],
+      "durationDays": 1
+    },
+    {
+      "id": "ii-mahmud-dogum",
+      "summary": "Doğum: II. Mahmud",
+      "description": "20 Temmuz 1785 – İstanbul\n\nVaka-i Hayriye (1826) ile Yeniçeri Ocağı’nı kaldırıp Asakir-i Mansure’yi kurdu; merkezî bürokrasiyi yeniden örgütledi. Kıyafet, idare ve eğitimde köklü düzenlemelerle Tanzimat’ın zeminini hazırladı.",
+      "month": 7,
+      "day": 20,
+      "location": "İstanbul",
+      "url": "https://tr.wikipedia.org/wiki/II._Mahmud",
+      "tags": ["sultan", "statesman"],
+      "durationDays": 1
+    },
+    {
+      "id": "ii-mahmud-vefat",
+      "summary": "Vefat: II. Mahmud",
+      "description": "1 Temmuz 1839 – İstanbul\n\nVaka-i Hayriye (1826) ile Yeniçeri Ocağı’nı kaldırıp Asakir-i Mansure’yi kurdu; merkezî bürokrasiyi yeniden örgütledi. Kıyafet, idare ve eğitimde köklü düzenlemelerle Tanzimat’ın zeminini hazırladı.",
+      "month": 7,
+      "day": 1,
+      "location": "İstanbul",
+      "url": "https://tr.wikipedia.org/wiki/II._Mahmud",
+      "tags": ["sultan", "statesman"],
+      "durationDays": 1
+    },
+    {
+      "id": "cemil-meric-dogum",
+      "summary": "Doğum: Cemil Meriç",
+      "description": "12 Aralık 1916 – Reyhanlı\n\nYazar ve düşünür; 'Bu Ülke' ve 'Kırk Ambar' ile Doğu-Batı muhasebesinde derin analizler sundu. Türk düşünce hayatında mukayeseli bakışın güçlü bir temsilcisiydi.",
+      "month": 12,
+      "day": 12,
+      "location": "Reyhanlı",
+      "url": "https://tr.wikipedia.org/wiki/Cemil_Meri%C3%A7",
+      "tags": ["writer", "thinker"],
+      "durationDays": 1
+    },
+    {
+      "id": "cemil-meric-vefat",
+      "summary": "Vefat: Cemil Meriç",
+      "description": "13 Haziran 1987 – İstanbul\n\nYazar ve düşünür; 'Bu Ülke' ve 'Kırk Ambar' ile Doğu-Batı muhasebesinde derin analizler sundu. Türk düşünce hayatında mukayeseli bakışın güçlü bir temsilcisiydi.",
+      "month": 6,
+      "day": 13,
+      "location": "İstanbul",
+      "url": "https://tr.wikipedia.org/wiki/Cemil_Meri%C3%A7",
+      "tags": ["writer", "thinker"],
+      "durationDays": 1
+    },
+    {
+      "id": "ismet-ozel-dogum",
+      "summary": "Doğum: İsmet Özel",
+      "description": "19 Eylül 1944 – Kayseri\n\nŞair ve düşünür; 'Evet, İsyan' ve 'Geceleyin Bir Koşu' ile modern Türk şiirinde özgün bir hat açtı. Toplumsal ve bireysel gerilimi yoğun bir dil ve ritimle işledi.",
+      "month": 9,
+      "day": 19,
+      "location": "Kayseri",
+      "url": "https://tr.wikipedia.org/wiki/%C4%B0smet_%C3%96zel",
+      "tags": ["poet", "writer"],
+      "durationDays": 1
+    },
+    {
+      "id": "mahmut-ustaosmanoglu-dogum",
+      "summary": "Doğum: Mahmut Ustaosmanoğlu",
+      "description": "4 Ağustos 1931 – Of\n\nİsmailağa cemaati lideri; geleneksel ilim ve irfan çizgisini şehir hayatında diri tutan etkili bir irşad önderiydi.",
+      "month": 8,
+      "day": 4,
+      "location": "Of",
+      "url": "https://tr.wikipedia.org/wiki/Mahmut_Ustaosmano%C4%9Flu",
+      "tags": ["scholar", "sufi"],
+      "durationDays": 1
+    },
+    {
+      "id": "mahmut-ustaosmanoglu-vefat",
+      "summary": "Vefat: Mahmut Ustaosmanoğlu",
+      "description": "23 Haziran 2022 – İstanbul\n\nİsmailağa cemaati lideri; geleneksel ilim ve irfan çizgisini şehir hayatında diri tutan etkili bir irşad önderiydi.",
+      "month": 6,
+      "day": 23,
+      "location": "İstanbul",
+      "url": "https://tr.wikipedia.org/wiki/Mahmut_Ustaosmano%C4%9Flu",
+      "tags": ["scholar", "sufi"],
+      "durationDays": 1
+    },
+    {
+      "id": "yildirim-bayezid-vefat",
+      "summary": "Vefat: Yıldırım Bayezid",
+      "description": "8 Mart 1403 – Akşehir\n\nAnadolu birliğini tesis yolunda Niğbolu zaferi (1396) ile Haçlıları durdurdu; Ankara Savaşı (1402) sonrası esarette vefat etti.",
+      "month": 3,
+      "day": 8,
+      "location": "Akşehir",
+      "url": "https://tr.wikipedia.org/wiki/I._Bayezid",
       "tags": ["sultan", "statesman"],
       "durationDays": 1
     }
