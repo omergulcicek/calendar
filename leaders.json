@@ -564,6 +564,27 @@
       "url": "https://tr.wikipedia.org/wiki/I._Bayezid",
       "tags": ["sultan", "statesman"],
       "durationDays": 1
+    },{
+      "id": "yavuz-bulent-bakiler-dogum",
+      "summary": "Doğum: Yavuz Bülent Bâkiler",
+      "description": "23 Nisan 1936 – Sivas\n\nŞair, yazar ve düşünür. 'Yalnızlık', 'Duvak' ve 'Harman' gibi eserleriyle tanındı. Edebiyatında millî ve manevi duyarlılıkları işledi; Anadolu insanını şiirlerinde merkeze aldı.",
+      "month": 4,
+      "day": 23,
+      "location": "Sivas",
+      "url": "https://tr.wikipedia.org/wiki/Yavuz_B%C3%BClent_Bakiler",
+      "tags": ["poet", "writer", "thinker"],
+      "durationDays": 1
+    },
+    {
+      "id": "yavuz-bulent-bakiler-vefat",
+      "summary": "Vefat: Yavuz Bülent Bâkiler",
+      "description": "28 Eylül 2025 – İstanbul\n\nŞair, yazar ve düşünür. 'Yalnızlık', 'Duvak' ve 'Harman' gibi eserleriyle tanındı. Edebiyatında millî ve manevi duyarlılıkları işledi; Anadolu insanını şiirlerinde merkeze aldı.",
+      "month": 9,
+      "day": 28,
+      "location": "İstanbul",
+      "url": "https://tr.wikipedia.org/wiki/Yavuz_B%C3%BClent_Bakiler",
+      "tags": ["poet", "writer", "thinker"],
+      "durationDays": 1
     }
   ]
 }
