@@ -19,8 +19,8 @@ Dini günlerden İslam tarihine, milli bayramlardan Türk edebiyatına uzanan **
 | Dini Günler | `dini-gunler` | Diyanet İşleri Başkanlığı'nın ilan ettiği dini günler, kandiller, bayramlar ve mübarek geceler. |
 | İslam Tarihi | `islam-tarihi` | İslam tarihinde Hicri takvime göre anılan savaşlar, antlaşmalar, fetihler ve dönüm noktaları. |
 | Milli ve Kültürel Günler | `milli-ve-kulturel-gunler` | Türkiye'de kutlanan milli anma günleri, kültürel bayramlar ve farkındalık haftaları. |
-| İslam Alimleri | `islam-alimleri` | İslam alimleri, müfessirler ve İslam düşünürlerinin doğum ve vefat yıl dönümleri. |
-| Savaş ve Fetihler | `savas-ve-fetihler` | Selçuklu'dan Kurtuluş Savaşı'na meydan muharebeleri, fetihler, kuşatmalar ve seferler. |
+| Önemli Şahsiyetler | `onemli-sahsiyetler` | İslam dünyasının alimleri, düşünürleri, devlet adamları ve toplumsal liderlerinin doğum ve vefat yıl dönümleri. |
+| Tarihî Olaylar | `tarihi-olaylar` | Türk ve İslam tarihindeki savaşlar, fetihler, kuşatmalar; trajediler, soykırımlar ve uluslararası anma günleri. |
 | Türk Edebiyatı | `turk-edebiyati` | Türk edebiyatının önemli şair, romancı ve yazarları; doğum ve vefat yıl dönümleri. |
 
 ## Takvim Aboneliği Nasıl Yapılır?

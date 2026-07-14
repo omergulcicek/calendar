@@ -1,4 +1,5 @@
 import type { CalendarEvent } from '@/components/month-calendar'
+import { resolveCategorySlug } from '@/lib/feeds/category-slugs'
 import { expandEvent } from '@/lib/expand-events'
 import type { CategoryRow } from '@/lib/queries/categories'
 import { fetchPublishedEventRows } from '@/lib/queries/fetch-published-events.server'
@@ -23,8 +24,9 @@ export async function resolveFeedSlugs(
 ): Promise<{ slugs: string[]; invalid: string[] }> {
   const categories = await fetchCategoryRows()
   const known = new Set(categories.map((category) => category.slug))
-  const invalid = slugs.filter((slug) => !known.has(slug))
-  const valid = slugs.filter((slug) => known.has(slug))
+  const resolved = slugs.map((slug) => resolveCategorySlug(slug))
+  const invalid = resolved.filter((slug) => !known.has(slug))
+  const valid = resolved.filter((slug) => known.has(slug))
 
   return { slugs: valid, invalid }
 }

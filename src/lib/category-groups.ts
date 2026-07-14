@@ -11,7 +11,7 @@ export const CATEGORY_GROUPS: readonly CategoryGroupDefinition[] = [
   },
   {
     label: 'Din ve İnanç',
-    slugs: ['dini-gunler', 'islam-tarihi', 'islam-alimleri'],
+    slugs: ['dini-gunler', 'islam-tarihi', 'onemli-sahsiyetler'],
   },
   {
     label: 'Kültür ve Edebiyat',
@@ -19,7 +19,7 @@ export const CATEGORY_GROUPS: readonly CategoryGroupDefinition[] = [
   },
   {
     label: 'Tarih',
-    slugs: ['savas-ve-fetihler'],
+    slugs: ['tarihi-olaylar'],
   },
 ] as const
 

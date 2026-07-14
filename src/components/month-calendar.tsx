@@ -29,6 +29,7 @@ import {
   Rows3,
 } from "lucide-react";
 
+import { CalendarEventSearch } from "@/components/calendar-event-search";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -313,6 +314,13 @@ export function MonthCalendar({
     [visibleEvents, currentMonth],
   );
 
+  function handleSearchSelect(event: CalendarEvent) {
+    setSelectedCategoryKey(ALL_CATEGORIES_KEY);
+    setCurrentMonth(startOfMonth(event.start));
+    setView("month");
+    onEventClick?.(event);
+  }
+
   function goPrev() {
     setCurrentMonth((m) =>
       view === "year" ? subYears(m, 1) : subMonths(m, 1),
@@ -478,6 +486,10 @@ export function MonthCalendar({
           </div>
 
           <div className="flex items-center gap-2 md:shrink-0">
+            <CalendarEventSearch
+              events={events}
+              onSelect={handleSearchSelect}
+            />
             {viewControls}
             <div className="flex min-w-0 flex-1 justify-end md:flex-none">
               {categorySelect}
