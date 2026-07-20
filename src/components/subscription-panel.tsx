@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
 import { getCategoryColor } from '@/lib/categories'
+import { groupCategoriesForSelect } from '@/lib/category-groups'
 import { resolveSubscribeFeedUrl } from '@/lib/feeds/urls'
 import type { CategoryRow } from '@/lib/queries/categories'
 import { toWebcalUrl } from '@/lib/site-url'
@@ -21,6 +22,8 @@ type SubscriptionPanelProps = {
   categories: CategoryRow[]
 }
 
+type GroupableCategory = CategoryRow & { key: string }
+
 export function SubscriptionPanel({ categories }: SubscriptionPanelProps) {
   const allSlugs = useMemo(
     () => categories.map((category) => category.slug),
@@ -30,6 +33,19 @@ export function SubscriptionPanel({ categories }: SubscriptionPanelProps) {
     () => new Set(allSlugs),
   )
   const [copied, setCopied] = useState(false)
+
+  const { groups: categoryGroups, ungrouped: ungroupedCategories } = useMemo(
+    () =>
+      groupCategoriesForSelect(
+        categories.map(
+          (category): GroupableCategory => ({
+            ...category,
+            key: category.slug,
+          }),
+        ),
+      ),
+    [categories],
+  )
 
   const selectedList = useMemo(
     () => allSlugs.filter((slug) => selectedSlugs.has(slug)),
@@ -84,6 +100,41 @@ export function SubscriptionPanel({ categories }: SubscriptionPanelProps) {
     void copyFeedUrl()
   }
 
+  function renderCategoryCheckbox(category: GroupableCategory) {
+    const color = getCategoryColor(category.slug)
+    const checked = selectedSlugs.has(category.slug)
+    const id = `subscribe-${category.slug}`
+
+    return (
+      <Label
+        key={category.slug}
+        htmlFor={id}
+        className="flex cursor-pointer items-start gap-3 rounded-md border border-transparent px-2 py-2 transition-colors hover:bg-accent"
+      >
+        <Checkbox
+          id={id}
+          checked={checked}
+          onCheckedChange={(value) =>
+            toggleSlug(category.slug, value === true)
+          }
+          className="mt-0.5"
+        />
+        <span
+          className={cn('mt-1 size-2.5 shrink-0 rounded-full', color.dot)}
+          aria-hidden
+        />
+        <span className="min-w-0 flex-1">
+          <span className="block text-sm font-medium">{category.name}</span>
+          {category.desc && (
+            <span className="mt-0.5 block text-xs font-normal text-muted-foreground">
+              {category.desc}
+            </span>
+          )}
+        </span>
+      </Label>
+    )
+  }
+
   return (
     <section
       id={SITE_SECTIONS.abonelik}
@@ -111,42 +162,28 @@ export function SubscriptionPanel({ categories }: SubscriptionPanelProps) {
 
       <div
         id={SITE_SECTIONS.kategoriler}
-        className={cn('mt-4 grid gap-2 sm:grid-cols-2', SECTION_SCROLL_CLASS)}
+        className={cn('mt-4 flex flex-col gap-5', SECTION_SCROLL_CLASS)}
       >
-        {categories.map((category) => {
-          const color = getCategoryColor(category.slug)
-          const checked = selectedSlugs.has(category.slug)
-          const id = `subscribe-${category.slug}`
-
-          return (
-            <Label
-              key={category.slug}
-              htmlFor={id}
-              className="flex cursor-pointer items-start gap-3 rounded-md border border-transparent px-2 py-2 transition-colors hover:bg-accent"
-            >
-              <Checkbox
-                id={id}
-                checked={checked}
-                onCheckedChange={(value) =>
-                  toggleSlug(category.slug, value === true)
-                }
-                className="mt-0.5"
-              />
-              <span
-                className={cn('mt-1 size-2.5 shrink-0 rounded-full', color.dot)}
-                aria-hidden
-              />
-              <span className="min-w-0 flex-1">
-                <span className="block text-sm font-medium">{category.name}</span>
-                {category.desc && (
-                  <span className="mt-0.5 block text-xs font-normal text-muted-foreground">
-                    {category.desc}
-                  </span>
-                )}
-              </span>
-            </Label>
-          )
-        })}
+        {categoryGroups.map((group) => (
+          <div key={group.label} className="flex flex-col gap-2">
+            <h3 className="px-2 text-xs font-medium text-muted-foreground">
+              {group.label}
+            </h3>
+            <div className="grid gap-2 sm:grid-cols-2">
+              {group.categories.map(renderCategoryCheckbox)}
+            </div>
+          </div>
+        ))}
+        {ungroupedCategories.length > 0 ? (
+          <div className="flex flex-col gap-2">
+            <h3 className="px-2 text-xs font-medium text-muted-foreground">
+              Diğer
+            </h3>
+            <div className="grid gap-2 sm:grid-cols-2">
+              {ungroupedCategories.map(renderCategoryCheckbox)}
+            </div>
+          </div>
+        ) : null}
       </div>
 
       <div className="mt-5 rounded-lg bg-muted/30 p-4">
