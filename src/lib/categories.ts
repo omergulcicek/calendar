@@ -11,6 +11,9 @@ export type CategoryColorKey =
   | 'blue600'
   | 'lime500'
   | 'purple600'
+  | 'black'
+  | 'amber500'
+  | 'rose800'
 
 export type CategoryColorStyle = {
   // Aylık görünümdeki event "chip"i (yumuşak renkli arka plan)
@@ -56,6 +59,18 @@ export const COLOR_STYLES: Record<
     chip: 'bg-purple-100 text-purple-900 dark:bg-purple-600/15 dark:text-purple-300',
     dot: 'bg-purple-600',
   },
+  black: {
+    chip: 'bg-neutral-200 text-neutral-950 dark:bg-neutral-500/25 dark:text-neutral-100',
+    dot: 'bg-neutral-950 dark:bg-neutral-100',
+  },
+  amber500: {
+    chip: 'bg-amber-100 text-amber-950 dark:bg-amber-500/15 dark:text-amber-300',
+    dot: 'bg-amber-500',
+  },
+  rose800: {
+    chip: 'bg-rose-100 text-rose-950 dark:bg-rose-800/20 dark:text-rose-300',
+    dot: 'bg-rose-800',
+  },
   default: {
     chip: 'bg-muted text-foreground/80',
     dot: 'bg-muted-foreground',
@@ -72,6 +87,10 @@ export const CATEGORY_COLOR_MAP: Record<string, CategoryColorKey> = {
   'turk-edebiyati': 'blue600',
   'dunya-kupasi': 'lime500',
   'sampiyonlar-ligi': 'purple600',
+  besiktas: 'black',
+  fenerbahce: 'amber500',
+  galatasaray: 'red600',
+  trabzonspor: 'rose800',
 }
 
 export function getCategoryColor(

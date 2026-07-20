@@ -4,13 +4,17 @@ import { groupCategoriesForSelect } from './category-groups'
 
 describe('groupCategoriesForSelect', () => {
   const categories = [
+    { key: 'besiktas', slug: 'besiktas', name: 'Beşiktaş' },
     { key: 'dini-gunler', slug: 'dini-gunler', name: 'Dini Günler' },
     { key: 'dunya-kupasi', slug: 'dunya-kupasi', name: 'Dünya Kupası' },
+    { key: 'fenerbahce', slug: 'fenerbahce', name: 'Fenerbahçe' },
+    { key: 'galatasaray', slug: 'galatasaray', name: 'Galatasaray' },
     {
       key: 'sampiyonlar-ligi',
       slug: 'sampiyonlar-ligi',
       name: 'Şampiyonlar Ligi',
     },
+    { key: 'trabzonspor', slug: 'trabzonspor', name: 'Trabzonspor' },
     { key: '__none__', slug: null, name: 'Kategorisiz' },
   ]
 
@@ -19,6 +23,10 @@ describe('groupCategoriesForSelect', () => {
     const futbol = groups.find((group) => group.label === 'Futbol')
 
     expect(futbol?.categories.map((category) => category.slug)).toEqual([
+      'besiktas',
+      'fenerbahce',
+      'galatasaray',
+      'trabzonspor',
       'dunya-kupasi',
       'sampiyonlar-ligi',
     ])

@@ -462,7 +462,12 @@ export function MonthCalendar({
             {group.categories.map(renderCategoryItem)}
           </SelectGroup>
         ))}
-        {ungroupedCategories.map(renderCategoryItem)}
+        {ungroupedCategories.length > 0 ? (
+          <SelectGroup>
+            <SelectLabel>Diğer</SelectLabel>
+            {ungroupedCategories.map(renderCategoryItem)}
+          </SelectGroup>
+        ) : null}
       </SelectContent>
     </Select>
   );

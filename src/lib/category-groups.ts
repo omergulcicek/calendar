@@ -7,7 +7,15 @@ export type CategoryGroupDefinition = {
 export const CATEGORY_GROUPS: readonly CategoryGroupDefinition[] = [
   {
     label: 'Futbol',
-    slugs: ['dunya-kupasi', 'sampiyonlar-ligi'],
+    // Kulüpler önce, turnuvalar sonra (Türkçe alfabetik değil; okuma sırası).
+    slugs: [
+      'besiktas',
+      'fenerbahce',
+      'galatasaray',
+      'trabzonspor',
+      'dunya-kupasi',
+      'sampiyonlar-ligi',
+    ],
   },
   {
     label: 'Din ve İnanç',
