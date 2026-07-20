@@ -11,8 +11,7 @@ function makeEvent(
 ): CalendarEvent {
   return {
     end: overrides.start,
-    categorySlug: 'dini-gunler',
-    categoryName: 'Dini Günler',
+    categories: [{ slug: 'dini-gunler', name: 'Dini Günler' }],
     allDay: true,
     ...overrides,
   }
@@ -125,13 +124,13 @@ describe('searchCalendarEvents', () => {
       makeEvent({
         id: 'mac-1',
         title: '🇹🇷 Türkiye 3 - 2 ABD 🇺🇸',
-        categoryName: 'Dünya Kupası',
+        categories: [{ slug: 'dunya-kupasi', name: 'Dünya Kupası' }],
         start: new Date('2026-06-26'),
       }),
       makeEvent({
         id: 'mac-2',
         title: '🇦🇺 Avustralya 2 - 0 Türkiye 🇹🇷',
-        categoryName: 'Dünya Kupası',
+        categories: [{ slug: 'dunya-kupasi', name: 'Dünya Kupası' }],
         start: new Date('2026-06-14'),
       }),
     ]

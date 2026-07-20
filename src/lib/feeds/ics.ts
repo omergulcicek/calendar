@@ -75,8 +75,11 @@ function calendarEventToLines(
     lines.push(`URL:${escapeIcsText(event.sourceUrl)}`)
   }
 
-  if (event.categoryName) {
-    lines.push(`CATEGORIES:${escapeIcsText(event.categoryName)}`)
+  if (event.categories.length > 0) {
+    const categoryNames = event.categories.map((c) => c.name).filter(Boolean)
+    if (categoryNames.length > 0) {
+      lines.push(`CATEGORIES:${escapeIcsText(categoryNames.join(','))}`)
+    }
   }
 
   if (event.allDay) {

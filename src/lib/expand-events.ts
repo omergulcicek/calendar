@@ -32,10 +32,12 @@ export const EVENT_SOURCE_UTC_OFFSET_MINUTES = 180
 export const RECURRENCE_WINDOW_YEARS_BEFORE = 2
 export const RECURRENCE_WINDOW_YEARS_AFTER = 5
 
-function extractCategory(category: EventRow['category']): CategoryRef | null {
-  if (!category) return null
-  if (Array.isArray(category)) return category[0] ?? null
-  return category
+function extractCategories(row: EventRow): CategoryRef[] {
+  if (!row.categories) return []
+  return row.categories.flatMap((c) => {
+    if (Array.isArray(c.category)) return c.category
+    return c.category ? [c.category] : []
+  })
 }
 
 function extractSubject(subject: EventRow['subject']): SubjectRef | null {
@@ -147,7 +149,7 @@ function buildCalendarEvent(
   chipDurationMs: number,
   displayRangeStart: Date,
   displayRangeEnd: Date,
-  category: CategoryRef | null,
+  categories: CategoryRef[],
   subject: SubjectRef | null,
   occurrenceKey: string,
 ): CalendarEvent {
@@ -170,9 +172,11 @@ function buildCalendarEvent(
     displayStart: wallClockDate(displayRangeStart),
     displayEnd: wallClockDate(displayRangeEnd),
     allDay: row.is_all_day ?? false,
-    categorySlug: category?.slug ?? null,
-    categoryName: category?.name ?? null,
-    categoryDesc: category?.desc ?? null,
+    categories: categories.map(c => ({
+      slug: c.slug,
+      name: c.name,
+      desc: c.desc,
+    })),
     description: row.description ?? subject?.description ?? null,
     location: row.location,
     sourceUrl: row.source_url ?? subject?.source_url ?? null,
@@ -186,7 +190,7 @@ function makeGregorianYearlyOccurrence(
   durationMs: number,
   displayRangeStart: Date,
   displayRangeEnd: Date,
-  category: CategoryRef | null,
+  categories: CategoryRef[],
   subject: SubjectRef | null,
   targetYear: number,
 ): CalendarEvent {
@@ -202,9 +206,11 @@ function makeGregorianYearlyOccurrence(
     displayStart: wallClockDate(displayRangeStart),
     displayEnd: wallClockDate(displayRangeEnd),
     allDay: row.is_all_day ?? false,
-    categorySlug: category?.slug ?? null,
-    categoryName: category?.name ?? null,
-    categoryDesc: category?.desc ?? null,
+    categories: categories.map(c => ({
+      slug: c.slug,
+      name: c.name,
+      desc: c.desc,
+    })),
     description: row.description ?? subject?.description ?? null,
     location: row.location,
     sourceUrl: row.source_url ?? subject?.source_url ?? null,
@@ -226,7 +232,7 @@ function expandGregorianEvent(row: EventRow): CalendarEvent[] {
     row.occurrence_date != null,
     row,
   )
-  const category = extractCategory(row.category)
+  const categories = extractCategories(row)
   const subject = extractSubject(row.subject)
   const recurrence: Recurrence =
     row.recurrence === 'none' ? 'none' : 'yearly'
@@ -239,7 +245,7 @@ function expandGregorianEvent(row: EventRow): CalendarEvent[] {
         durationMs,
         rangeStart,
         rangeEnd,
-        category,
+        categories,
         subject,
         row.id,
       ),
@@ -260,7 +266,7 @@ function expandGregorianEvent(row: EventRow): CalendarEvent[] {
         durationMs,
         rangeStart,
         rangeEnd,
-        category,
+        categories,
         subject,
         year,
       ),
@@ -270,7 +276,7 @@ function expandGregorianEvent(row: EventRow): CalendarEvent[] {
 }
 
 function expandHijriEvent(row: EventRow): CalendarEvent[] {
-  const category = extractCategory(row.category)
+  const categories = extractCategories(row)
   const subject = extractSubject(row.subject)
   const currentYear = new Date().getFullYear()
   const minYear = currentYear - RECURRENCE_WINDOW_YEARS_BEFORE
@@ -335,7 +341,7 @@ function expandHijriEvent(row: EventRow): CalendarEvent[] {
         durationMs,
         rangeStart,
         rangeEnd,
-        category,
+        categories,
         subject,
         `${row.id}-${year}`,
       ),

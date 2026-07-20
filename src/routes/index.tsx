@@ -39,7 +39,7 @@ function decodeUrlForDisplay(url: string): string {
 }
 
 export const Route = createFileRoute('/')({
-  loader: ({ context }) =>
+  loader: ({ context }: any) =>
     Promise.all([
       context.queryClient.ensureQueryData(eventsQueryOptions),
       context.queryClient.ensureQueryData(categoriesQueryOptions),
@@ -79,7 +79,7 @@ function App() {
     }))
 
     const hasUncategorized = events.some(
-      (event) => event.categorySlug == null,
+      (event) => event.categories.length === 0,
     )
     if (!hasUncategorized) {
       return fromDb
@@ -105,7 +105,8 @@ function App() {
   const isAllDay = selectedEvent?.allDay ?? false
   const isMultiDay =
     dateStart != null && dateEnd != null && !isSameDay(dateStart, dateEnd)
-  const color = getCategoryColor(selectedEvent?.categorySlug)
+  const firstCategory = selectedEvent?.categories[0]
+  const color = getCategoryColor(firstCategory?.slug)
 
   return (
     <main className="mx-auto w-full min-w-0 max-w-7xl space-y-24 px-4 pt-6 pb-8 sm:space-y-32 md:space-y-48 sm:pt-8">
@@ -159,13 +160,13 @@ function App() {
             <>
               <DialogHeader>
                 <DialogTitle>{selectedEvent.title}</DialogTitle>
-                {selectedEvent.categoryName && (
+                {selectedEvent.categories.length > 0 && (
                   <DialogDescription className="flex items-center gap-2">
                     <span
                       className={cn('size-2 rounded-full', color.dot)}
                       aria-hidden
                     />
-                    {selectedEvent.categoryName}
+                    {selectedEvent.categories.map(c => c.name).join(', ')}
                   </DialogDescription>
                 )}
               </DialogHeader>

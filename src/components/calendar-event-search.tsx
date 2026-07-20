@@ -48,8 +48,9 @@ function SearchResultItem({
   event: CalendarEvent
   onSelect: (event: CalendarEvent) => void
 }) {
-  const color = getCategoryColor(event.categorySlug)
-  const secondary = event.description ?? event.categoryName
+  const firstCategory = event.categories[0]
+  const color = getCategoryColor(firstCategory?.slug)
+  const secondary = event.description ?? event.categories.map(c => c.name).join(', ')
 
   return (
     <CommandItem

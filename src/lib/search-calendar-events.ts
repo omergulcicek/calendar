@@ -9,7 +9,8 @@ function normalizeForSearch(value: string): string {
 }
 
 function searchableFields(event: CalendarEvent): string[] {
-  return [event.title, event.description, event.categoryName, event.location]
+  const categoryNames = event.categories.map(c => c.name).filter(Boolean) as string[]
+  return [event.title, event.description, ...categoryNames, event.location]
     .filter((value): value is string => Boolean(value))
     .map(normalizeForSearch)
 }
@@ -30,16 +31,14 @@ export function scoreEvent(event: CalendarEvent, rawQuery: string): number {
   for (const word of words) {
     const title = event.title ? normalizeForSearch(event.title) : ''
     const location = event.location ? normalizeForSearch(event.location) : ''
-    const categoryName = event.categoryName
-      ? normalizeForSearch(event.categoryName)
-      : ''
+    const categoryNames = event.categories.map(c => c.name).filter((name): name is string => Boolean(name)).map(normalizeForSearch)
     const description = event.description
       ? normalizeForSearch(event.description)
       : ''
 
     if (title.includes(word)) score += 100
     if (location.includes(word)) score += 50
-    if (categoryName.includes(word)) score += 30
+    if (categoryNames.some(c => c.includes(word))) score += 30
     if (description.includes(word)) score += 10
   }
 

@@ -49,10 +49,11 @@ export async function loadFeedEvents(
     slugSet == null
       ? rows
       : rows.filter((row) => {
-          const category = Array.isArray(row.category)
-            ? row.category[0]
-            : row.category
-          return category?.slug != null && slugSet.has(category.slug)
+          if (!row.categories) return false
+          return row.categories.some((c) => {
+            const cat = Array.isArray(c.category) ? c.category[0] : c.category
+            return cat?.slug != null && slugSet.has(cat.slug)
+          })
         })
 
   const events = filteredRows

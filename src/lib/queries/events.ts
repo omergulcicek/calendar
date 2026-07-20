@@ -46,7 +46,7 @@ export type EventRow = {
   hijri_end_day: number | null
   hijri_rule: HijriRule | null
   gregorian_dates: EventGregorianDateRow | EventGregorianDateRow[] | null
-  category: CategoryRef | CategoryRef[] | null
+  categories: { category: CategoryRef | CategoryRef[] }[] | null
   subject: SubjectRef | SubjectRef[] | null
 }
 

@@ -80,9 +80,7 @@ export type CalendarEvent = {
   displayStart?: Date;
   displayEnd?: Date;
   allDay?: boolean;
-  categorySlug: string | null;
-  categoryName: string | null;
-  categoryDesc?: string | null;
+  categories: { slug: string | null; name: string | null; desc?: string | null }[];
   description?: string | null;
   location?: string | null;
   sourceUrl?: string | null;
@@ -102,14 +100,28 @@ export type CalendarCategory = {
 function deriveCategories(events: CalendarEvent[]): CalendarCategory[] {
   const map = new Map<string, CalendarCategory>();
   for (const event of events) {
-    const key = event.categorySlug ?? NO_CATEGORY_KEY;
-    if (map.has(key)) continue;
-    map.set(key, {
-      key,
-      name: event.categoryName ?? "Kategorisiz",
-      slug: event.categorySlug,
-      desc: event.categoryDesc ?? null,
-    });
+    if (event.categories.length === 0) {
+      if (!map.has(NO_CATEGORY_KEY)) {
+        map.set(NO_CATEGORY_KEY, {
+          key: NO_CATEGORY_KEY,
+          name: "Kategorisiz",
+          slug: null,
+          desc: null,
+        });
+      }
+    } else {
+      for (const cat of event.categories) {
+        const key = cat.slug ?? NO_CATEGORY_KEY;
+        if (!map.has(key)) {
+          map.set(key, {
+            key,
+            name: cat.name ?? "Kategorisiz",
+            slug: cat.slug,
+            desc: cat.desc ?? null,
+          });
+        }
+      }
+    }
   }
   return Array.from(map.values()).sort((a, b) =>
     a.name.localeCompare(b.name, "tr"),
@@ -170,7 +182,8 @@ function EventChip({
   event: CalendarEvent;
   onClick?: (event: CalendarEvent) => void;
 }) {
-  const color = getCategoryColor(event.categorySlug);
+  const firstCategory = event.categories[0];
+  const color = getCategoryColor(firstCategory?.slug);
   return (
     <button
       type="button"
@@ -199,7 +212,8 @@ function ListEventRow({
   event: CalendarEvent;
   onClick?: (event: CalendarEvent) => void;
 }) {
-  const color = getCategoryColor(event.categorySlug);
+  const firstCategory = event.categories[0];
+  const color = getCategoryColor(firstCategory?.slug);
   const dateStart = event.displayStart ?? event.start;
   const dateEnd = event.displayEnd ?? event.end;
   const isMultiDay =
@@ -240,9 +254,9 @@ function ListEventRow({
             </p>
           )}
         </div>
-        {event.categoryName && (
+        {event.categories.length > 0 && (
           <span className="hidden shrink-0 pt-0.5 text-xs text-muted-foreground sm:block">
-            {event.categoryName}
+            {event.categories.map(c => c.name).join(', ')}
           </span>
         )}
       </div>
@@ -280,10 +294,14 @@ export function MonthCalendar({
 
   const visibleEvents = useMemo(() => {
     if (selectedCategoryKey === ALL_CATEGORIES_KEY) return events;
-    return events.filter(
-      (event) =>
-        (event.categorySlug ?? NO_CATEGORY_KEY) === selectedCategoryKey,
-    );
+    return events.filter((event) => {
+      if (event.categories.length === 0) {
+        return selectedCategoryKey === NO_CATEGORY_KEY;
+      }
+      return event.categories.some(
+        (cat) => (cat.slug ?? NO_CATEGORY_KEY) === selectedCategoryKey,
+      );
+    });
   }, [events, selectedCategoryKey]);
 
   const weekdayLabels = useMemo(() => {
@@ -651,7 +669,8 @@ function MiniMonth({
               {inMonth && dayEvents.length > 0 && (
                 <div className="flex min-h-3 max-w-full items-center justify-center gap-0.5 px-0.5 py-0.5">
                   {dayEvents.slice(0, MAX_DOTS_PER_DAY).map((event) => {
-                    const color = getCategoryColor(event.categorySlug);
+                    const firstCategory = event.categories[0];
+                    const color = getCategoryColor(firstCategory?.slug);
                     return (
                       <Tooltip key={event.id}>
                         <TooltipTrigger asChild>
