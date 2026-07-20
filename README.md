@@ -2,7 +2,7 @@
 
 Dini günlerden İslam tarihine, milli bayramlardan Türk edebiyatına uzanan **özenle seçilmiş etkinlik takvimlerini** keşfedin. Web sitesinde aylık takvimde gezin, etkinlik ayrıntılarını okuyun ve seçtiğiniz kategorileri **ICS aboneliği** ile doğrudan iPhone, Google Takvim veya Outlook takviminize ekleyin.
 
-**Canlı site:** [https://takvim-abonelik.vercel.app](https://takvim-abonelik.vercel.app)
+**Canlı site:** [https://takvim.omergulcicek.com](https://takvim.omergulcicek.com)
 
 ## Özellikler
 
@@ -61,9 +61,9 @@ Güncellemeler birkaç saatte bir gelir; hemen görünmeyebilir.
 
 | Feed | URL |
 | --- | --- |
-| Tüm kategoriler | `https://takvim-abonelik.vercel.app/feeds/all.ics` |
-| Tek kategori | `https://takvim-abonelik.vercel.app/feeds/{slug}.ics` |
-| Seçili kategoriler | `https://takvim-abonelik.vercel.app/feeds/subscribe.ics?k=slug1,slug2` |
+| Tüm kategoriler | `https://takvim.omergulcicek.com/feeds/all.ics` |
+| Tek kategori | `https://takvim.omergulcicek.com/feeds/{slug}.ics` |
+| Seçili kategoriler | `https://takvim.omergulcicek.com/feeds/subscribe.ics?k=slug1,slug2` |
 
 Örnek: yalnızca Dini Günler → `/feeds/dini-gunler.ics`
 
