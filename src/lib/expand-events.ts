@@ -184,6 +184,11 @@ function buildCalendarEvent(
   }
 }
 
+function wallClockInYear(date: Date, targetYear: number): Date {
+  const { month, day, hours, minutes, seconds } = wallClockParts(date)
+  return new Date(targetYear, month, day, hours, minutes, seconds)
+}
+
 function makeGregorianYearlyOccurrence(
   row: EventRow,
   chipStart: Date,
@@ -194,17 +199,23 @@ function makeGregorianYearlyOccurrence(
   subject: SubjectRef | null,
   targetYear: number,
 ): CalendarEvent {
-  const { month, day, hours, minutes, seconds } = wallClockParts(chipStart)
-  const occStart = new Date(targetYear, month, day, hours, minutes, seconds)
+  const occStart = wallClockInYear(chipStart, targetYear)
   const occEnd = new Date(occStart.getTime() + durationMs)
+
+  const displayStartParts = wallClockParts(displayRangeStart)
+  const displayEndParts = wallClockParts(displayRangeEnd)
+  const displayYearSpan = displayEndParts.year - displayStartParts.year
 
   return {
     id: `${row.id}-${targetYear}`,
     title: row.title,
     start: occStart,
     end: occEnd,
-    displayStart: wallClockDate(displayRangeStart),
-    displayEnd: wallClockDate(displayRangeEnd),
+    displayStart: wallClockInYear(displayRangeStart, targetYear),
+    displayEnd: wallClockInYear(
+      displayRangeEnd,
+      targetYear + displayYearSpan,
+    ),
     allDay: row.is_all_day ?? false,
     categories: categories.map(c => ({
       slug: c.slug,

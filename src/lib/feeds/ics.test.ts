@@ -38,6 +38,36 @@ describe('serializeCalendarFeed', () => {
     expect(ics).toContain('CATEGORIES:Dini Günler')
     expect(ics).toContain('END:VCALENDAR')
   })
+
+  it('uses occurrence start/end years for all-day events, not historical displayStart', () => {
+    const events: CalendarEvent[] = [
+      {
+        id: 'person-2026',
+        title: 'Örnek: Doğum Yıl Dönümü',
+        start: new Date(2026, 7, 4),
+        end: new Date(2026, 7, 4, 23, 59, 59),
+        displayStart: new Date(1944, 7, 4),
+        displayEnd: new Date(1944, 7, 4, 23, 59, 59),
+        allDay: true,
+        categories: [
+          {
+            slug: 'onemli-sahsiyetler',
+            name: 'Önemli Şahsiyetler',
+            desc: null,
+          },
+        ],
+        description: null,
+        location: null,
+        sourceUrl: null,
+      },
+    ]
+
+    const ics = serializeCalendarFeed(events, 'Önemli Şahsiyetler')
+
+    expect(ics).toContain('DTSTART;VALUE=DATE:20260804')
+    expect(ics).toContain('DTEND;VALUE=DATE:20260805')
+    expect(ics).not.toContain('DTSTART;VALUE=DATE:19440804')
+  })
 })
 
 describe('buildFeedFilename', () => {

@@ -83,8 +83,9 @@ function calendarEventToLines(
   }
 
   if (event.allDay) {
-    const rangeStart = startOfDay(event.displayStart ?? event.start)
-    const rangeEnd = startOfDay(event.displayEnd ?? event.end)
+    // Match the web calendar: place all-day events by occurrence start/end.
+    const rangeStart = startOfDay(event.start)
+    const rangeEnd = startOfDay(event.end)
     const dtEndExclusive = addDays(rangeEnd, 1)
     lines.push(`DTSTART;VALUE=DATE:${formatIcsDate(rangeStart)}`)
     lines.push(`DTEND;VALUE=DATE:${formatIcsDate(dtEndExclusive)}`)
