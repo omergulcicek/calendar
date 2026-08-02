@@ -26,10 +26,7 @@ const MicrosoftOutlook = (props: SVGProps<SVGSVGElement>) => (
         gradientUnits="userSpaceOnUse"
       >
         <stop offset="0" style={{ stopColor: "#165ad9", stopOpacity: "1" }} />
-        <stop
-          offset=".501"
-          style={{ stopColor: "#1880e5", stopOpacity: "1" }}
-        />
+        <stop offset=".501" style={{ stopColor: "#1880e5", stopOpacity: "1" }} />
         <stop offset="1" style={{ stopColor: "#8587ff", stopOpacity: "1" }} />
       </linearGradient>
       <linearGradient
@@ -41,14 +38,8 @@ const MicrosoftOutlook = (props: SVGProps<SVGSVGElement>) => (
         gradientTransform="scale(15)"
         gradientUnits="userSpaceOnUse"
       >
-        <stop
-          offset=".237"
-          style={{ stopColor: "#448aff", stopOpacity: "0" }}
-        />
-        <stop
-          offset=".792"
-          style={{ stopColor: "#0032b1", stopOpacity: ".2" }}
-        />
+        <stop offset=".237" style={{ stopColor: "#448aff", stopOpacity: "0" }} />
+        <stop offset=".792" style={{ stopColor: "#0032b1", stopOpacity: ".2" }} />
       </linearGradient>
       <linearGradient
         id="d"
@@ -60,10 +51,7 @@ const MicrosoftOutlook = (props: SVGProps<SVGSVGElement>) => (
         gradientUnits="userSpaceOnUse"
       >
         <stop offset="0" style={{ stopColor: "#1a43a6", stopOpacity: "1" }} />
-        <stop
-          offset=".492"
-          style={{ stopColor: "#2052cb", stopOpacity: "1" }}
-        />
+        <stop offset=".492" style={{ stopColor: "#2052cb", stopOpacity: "1" }} />
         <stop offset="1" style={{ stopColor: "#5f20cb", stopOpacity: "1" }} />
       </linearGradient>
       <linearGradient
@@ -76,10 +64,7 @@ const MicrosoftOutlook = (props: SVGProps<SVGSVGElement>) => (
         gradientUnits="userSpaceOnUse"
       >
         <stop offset="0" style={{ stopColor: "#0045b9", stopOpacity: "0" }} />
-        <stop
-          offset=".67"
-          style={{ stopColor: "#0d1f69", stopOpacity: ".2" }}
-        />
+        <stop offset=".67" style={{ stopColor: "#0d1f69", stopOpacity: ".2" }} />
       </linearGradient>
       <linearGradient
         id="g"
@@ -91,10 +76,7 @@ const MicrosoftOutlook = (props: SVGProps<SVGSVGElement>) => (
         gradientUnits="userSpaceOnUse"
       >
         <stop offset="0" style={{ stopColor: "#4dc4ff", stopOpacity: "1" }} />
-        <stop
-          offset=".196"
-          style={{ stopColor: "#0fafff", stopOpacity: "1" }}
-        />
+        <stop offset=".196" style={{ stopColor: "#0fafff", stopOpacity: "1" }} />
       </linearGradient>
       <linearGradient
         id="k"
@@ -105,14 +87,8 @@ const MicrosoftOutlook = (props: SVGProps<SVGSVGElement>) => (
         gradientTransform="scale(15)"
         gradientUnits="userSpaceOnUse"
       >
-        <stop
-          offset=".206"
-          style={{ stopColor: "#6ce0ff", stopOpacity: "1" }}
-        />
-        <stop
-          offset=".535"
-          style={{ stopColor: "#50d5ff", stopOpacity: "0" }}
-        />
+        <stop offset=".206" style={{ stopColor: "#6ce0ff", stopOpacity: "1" }} />
+        <stop offset=".535" style={{ stopColor: "#50d5ff", stopOpacity: "0" }} />
       </linearGradient>
       <radialGradient
         id="f"
@@ -124,14 +100,8 @@ const MicrosoftOutlook = (props: SVGProps<SVGSVGElement>) => (
         gradientTransform="matrix(0 -405.04051 438.393 0 360.027 102.268)"
         gradientUnits="userSpaceOnUse"
       >
-        <stop
-          offset=".568"
-          style={{ stopColor: "#275ff0", stopOpacity: "0" }}
-        />
-        <stop
-          offset=".992"
-          style={{ stopColor: "#002177", stopOpacity: "1" }}
-        />
+        <stop offset=".568" style={{ stopColor: "#275ff0", stopOpacity: "0" }} />
+        <stop offset=".992" style={{ stopColor: "#002177", stopOpacity: "1" }} />
       </radialGradient>
       <radialGradient
         id="h"
@@ -143,14 +113,8 @@ const MicrosoftOutlook = (props: SVGProps<SVGSVGElement>) => (
         gradientTransform="scale(173.58) rotate(-45 5.168 -1.292)"
         gradientUnits="userSpaceOnUse"
       >
-        <stop
-          offset=".259"
-          style={{ stopColor: "#0060d1", stopOpacity: ".4" }}
-        />
-        <stop
-          offset=".908"
-          style={{ stopColor: "#0383f1", stopOpacity: "0" }}
-        />
+        <stop offset=".259" style={{ stopColor: "#0060d1", stopOpacity: ".4" }} />
+        <stop offset=".908" style={{ stopColor: "#0383f1", stopOpacity: "0" }} />
       </radialGradient>
       <radialGradient
         id="i"
@@ -162,14 +126,8 @@ const MicrosoftOutlook = (props: SVGProps<SVGSVGElement>) => (
         gradientTransform="matrix(357.40702 -468.44593 423.59457 323.18709 159.471 697.08)"
         gradientUnits="userSpaceOnUse"
       >
-        <stop
-          offset=".732"
-          style={{ stopColor: "#f4a7f7", stopOpacity: "0" }}
-        />
-        <stop
-          offset="1"
-          style={{ stopColor: "#f4a7f7", stopOpacity: ".501961" }}
-        />
+        <stop offset=".732" style={{ stopColor: "#f4a7f7", stopOpacity: "0" }} />
+        <stop offset="1" style={{ stopColor: "#f4a7f7", stopOpacity: ".501961" }} />
       </radialGradient>
       <radialGradient
         id="j"
@@ -182,10 +140,7 @@ const MicrosoftOutlook = (props: SVGProps<SVGSVGElement>) => (
         gradientUnits="userSpaceOnUse"
       >
         <stop offset="0" style={{ stopColor: "#49deff", stopOpacity: "1" }} />
-        <stop
-          offset=".724"
-          style={{ stopColor: "#29c3ff", stopOpacity: "1" }}
-        />
+        <stop offset=".724" style={{ stopColor: "#29c3ff", stopOpacity: "1" }} />
       </radialGradient>
       <radialGradient
         id="l"
@@ -197,14 +152,8 @@ const MicrosoftOutlook = (props: SVGProps<SVGSVGElement>) => (
         gradientTransform="rotate(46.924 -378.504 245.25) scale(315.927)"
         gradientUnits="userSpaceOnUse"
       >
-        <stop
-          offset=".039"
-          style={{ stopColor: "#0091ff", stopOpacity: "1" }}
-        />
-        <stop
-          offset=".919"
-          style={{ stopColor: "#183dad", stopOpacity: "1" }}
-        />
+        <stop offset=".039" style={{ stopColor: "#0091ff", stopOpacity: "1" }} />
+        <stop offset=".919" style={{ stopColor: "#183dad", stopOpacity: "1" }} />
       </radialGradient>
       <radialGradient
         id="m"
@@ -216,14 +165,8 @@ const MicrosoftOutlook = (props: SVGProps<SVGSVGElement>) => (
         gradientTransform="matrix(0 168 -193.782 0 180 491.159)"
         gradientUnits="userSpaceOnUse"
       >
-        <stop
-          offset=".558"
-          style={{ stopColor: "#0fa5f7", stopOpacity: "0" }}
-        />
-        <stop
-          offset="1"
-          style={{ stopColor: "#74c6ff", stopOpacity: ".501961" }}
-        />
+        <stop offset=".558" style={{ stopColor: "#0fa5f7", stopOpacity: "0" }} />
+        <stop offset="1" style={{ stopColor: "#74c6ff", stopOpacity: ".501961" }} />
       </radialGradient>
     </defs>
     <path
