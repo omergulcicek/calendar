@@ -1,5 +1,7 @@
 # Takvim Aboneliği
 
+![Takvim önizleme](./public/readme-video.gif)
+
 [takvim.omergulcicek.com](https://takvim.omergulcicek.com)
 
 İlgilendiğiniz günleri, maçları ve yıl dönümlerini Apple, Google veya Outlook takviminize abone olarak ekleyin. Etkinlikler kaynak güncellendikçe otomatik yenilenir; dosya indirmenize gerek yoktur.
