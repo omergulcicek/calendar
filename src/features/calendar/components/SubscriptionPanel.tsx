@@ -137,9 +137,12 @@ export function SubscriptionPanel({ categories }: SubscriptionPanelProps) {
         <h2 className={cn(SECTION_HEADING_CLASS, "text-balance")}>Takvim Aboneliği</h2>
         <p className={cn(SECTION_DESC_CLASS, "text-pretty")}>
           Kategorileri seçin, abonelik URL’sini kopyalayın ve takvim uygulamanıza ekleyin. Abonelik,
-          dosya indirmekten farklıdır — etkinlikler otomatik güncellenir. Farklı kategorilerin
-          cihazınızda ayrı renk ve takvimler halinde görünmesini istiyorsanız, her kategoriyi tek
-          tek abone olup takvim uygulamanızda özelleştirebilirsiniz.
+          dosya indirmekten farklıdır — etkinlikler otomatik güncellenir.
+        </p>
+        <p className={cn(SECTION_DESC_CLASS, "text-pretty")}>
+          Takvimlerin uygulamanızda ayrı ayrı renklerle görünmesini istiyorsanız her kategoriye tek
+          tek abone olun. Hepsini tek seferde eklerseniz tek bir takvim oluşur ve tüm etkinlikler
+          aynı renkte görünür.
         </p>
       </div>
 
