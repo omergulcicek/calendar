@@ -43,6 +43,11 @@ const FAQ_ITEMS: FaqItem[] = [
       'Dini günlerde Hicri takvime göre tekrarlayan etkinlikler için Miladi tarihler, Diyanet İşleri Başkanlığı’nın yayımladığı anchor verileriyle eşleştirilir. Diğer kategorilerde Hicri bilgi varsa etkinlik kaydında gösterilir.',
   },
   {
+    question: 'Neden aradığım kişiyi veya tarihi olayı bulamıyorum?',
+    answer:
+      'Bu takvimde her şahsiyet veya her tarihî olay yer almıyor. Birçok eski olayda yalnızca yıl bilgisi vardır; ay ve gün net olmadığı için bunları güvenilir biçimde eklemek mümkün olmuyor. Ayrıca Cumhuriyet Bayramı, 23 Nisan gibi millî günler zaten resmî tatil takvimlerinde yer alıyor ve herkesçe bilindiği için burada tekrar etmiyoruz.',
+  },
+  {
     question: 'Yeni etkinlik veya kategori nasıl ekleyebilirim?',
     answer: (
       <>
