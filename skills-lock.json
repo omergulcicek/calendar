@@ -1,17 +1,17 @@
 {
   "version": 1,
   "skills": {
-    "supabase": {
-      "source": "supabase/agent-skills",
+    "emil-design-eng": {
+      "source": "emilkowalski/skills",
       "sourceType": "github",
-      "skillPath": "skills/supabase/SKILL.md",
-      "computedHash": "d414d598b9428b3e851c4ce61898649906b19e55aa7415bb42a286bd9ca2ab32"
+      "skillPath": "skills/emil-design-eng/SKILL.md",
+      "computedHash": "41b0a4dc1a27164fe297845a6c6850a39e9242c42c9be999967fcee9df2c5974"
     },
-    "supabase-postgres-best-practices": {
-      "source": "supabase/agent-skills",
+    "make-interfaces-feel-better": {
+      "source": "jakubkrehel/make-interfaces-feel-better",
       "sourceType": "github",
-      "skillPath": "skills/supabase-postgres-best-practices/SKILL.md",
-      "computedHash": "0d2c4857a7d6fdcd3fbc46e458fa4c497f029cab89a01548b3defce203003932"
+      "skillPath": "skills/make-interfaces-feel-better/SKILL.md",
+      "computedHash": "c8b15b529e088a318b2d3c17f0a97e15a7b1ce9ddab8bbdf9209e6ab7315cbde"
     }
   }
 }

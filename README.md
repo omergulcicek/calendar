@@ -1,77 +1,38 @@
 # Takvim Aboneliği
 
-Dini günlerden İslam tarihine, milli bayramlardan Türk edebiyatına uzanan **özenle seçilmiş etkinlik takvimlerini** keşfedin. Web sitesinde aylık takvimde gezin, etkinlik ayrıntılarını okuyun ve seçtiğiniz kategorileri **ICS aboneliği** ile doğrudan iPhone, Google Takvim veya Outlook takviminize ekleyin.
+Kategori bazlı ICS / webcal takvim aboneliği. [ViraStack Start](https://www.virastack.com/start/docs/installation) (TanStack Start, i18n yok) üzerine kuruldu; aynı Supabase veritabanını kullanır.
 
-**Canlı site:** [https://takvim.omergulcicek.com](https://takvim.omergulcicek.com)
+## Geliştirme
 
-## Özellikler
+```bash
+pnpm install
+cp .env.example .env.local   # Supabase + site URL
+pnpm dev
+```
 
-- Aylık takvim görünümü; etkinliklere tıklayarak açıklama, kaynak ve Hicri tarih bilgisine ulaşın
-- Kategori bazlı filtreleme ve abonelik URL’si oluşturma
-- Hicri takvime göre tekrarlayan dini günler (Diyanet Miladi tarih override’ları ile)
-- Açık/koyu tema desteği
-- Apple Takvim, Google Takvim ve Outlook için adım adım abonelik rehberi
+## Ortam değişkenleri
 
-## Takvim Kategorileri
+| Değişken                                              | Açıklama                        |
+| ----------------------------------------------------- | ------------------------------- |
+| `VITE_APP_NAME`                                       | Site adı                        |
+| `VITE_APP_URL`                                        | Uygulama URL’si (SEO)           |
+| `VITE_SITE_URL`                                       | ICS abonelik linklerinin host’u |
+| `VITE_SUPABASE_URL` / `VITE_SUPABASE_PUBLISHABLE_KEY` | Tarayıcı Supabase               |
+| `SUPABASE_URL` / `SUPABASE_PUBLISHABLE_KEY`           | Sunucu Supabase                 |
 
-| Kategori | Slug | Açıklama |
-| --- | --- | --- |
-| Dini Günler | `dini-gunler` | Diyanet İşleri Başkanlığı'nın ilan ettiği dini günler, kandiller, bayramlar ve mübarek geceler. |
-| İslam Tarihi | `islam-tarihi` | İslam tarihinde Hicri takvime göre anılan savaşlar, antlaşmalar, fetihler ve dönüm noktaları. |
-| Milli ve Kültürel Günler | `milli-ve-kulturel-gunler` | Türkiye'de kutlanan milli anma günleri, kültürel bayramlar ve farkındalık haftaları. |
-| Önemli Şahsiyetler | `onemli-sahsiyetler` | İslam dünyasının alimleri, düşünürleri, devlet adamları ve toplumsal liderlerinin doğum ve vefat yıl dönümleri. |
-| Tarihî Olaylar | `tarihi-olaylar` | Türk ve İslam tarihindeki savaşlar, fetihler, kuşatmalar; trajediler, soykırımlar ve uluslararası anma günleri. |
-| Türk Edebiyatı | `turk-edebiyati` | Türk edebiyatının önemli şair, romancı ve yazarları; doğum ve vefat yıl dönümleri. |
+## Yapı
 
-## Takvim Aboneliği Nasıl Yapılır?
+- `src/features/calendar` — takvim UI, abonelik, SSS, nasıl eklerim
+- `src/lib/feeds` — ICS feed üretimi
+- `src/lib/supabase` — Supabase istemcileri
+- `supabase/migrations` — mevcut DB migrasyonları
+- `.agents/skills` — `emil-design-eng`, `make-interfaces-feel-better`
 
-Site altındaki **Takvim Aboneliği** bölümünden istediğiniz kategorileri seçin, oluşan URL’yi kopyalayın veya **Abone ol** düğmesine basın. Abonelik, `.ics` dosyası indirip yüklemekten farklıdır — kaynak güncellendikçe takviminiz de otomatik yenilenir.
+## Scriptler
 
-### iPhone / Mac (Apple Takvim)
-
-1. Abonelik URL’sini kopyalayın. iPhone veya Mac’te **Abone ol** düğmesi Takvim uygulamasını doğrudan açabilir.
-2. **iPhone / iPad:** Takvim → Takvimler → Takvim Ekle → Takvim Aboneliği Ekle → URL’yi yapıştırın → Abone Ol.
-3. **Mac:** Takvim → Dosya → Yeni Takvim Aboneliği → URL’yi yapıştırın → Abone Ol.
-4. Takvime bir ad ve renk verin. iCloud hesabı seçerseniz diğer Apple cihazlarınızda da görünür.
-
-[Apple Destek: Takvim aboneliği ekleme](https://support.apple.com/tr-tr/102301)
-
-### Google / Android (Google Takvim)
-
-1. Abonelik URL’sini kopyalayın (`https://` ile başlayan tam adres).
-2. Bilgisayarda [calendar.google.com](https://calendar.google.com) adresini açın. URL ile takvim ekleme mobil uygulamada yapılamaz; ekleme sonrası telefona senkronize olur.
-3. Sol tarafta **Diğer takvimler** bölümünün yanındaki **+** simgesine tıklayın → **URL’den abone ol**.
-4. URL’yi yapıştırıp **Takvim ekle**’ye tıklayın.
-5. Telefonda görmek için Google Takvim uygulamasında ilgili takvimin yanındaki kutuyu işaretleyin.
-
-Güncellemeler birkaç saatte bir gelir; hemen görünmeyebilir.
-
-[Google Destek: URL ile takvim ekleme](https://support.google.com/calendar/answer/37100?hl=tr)
-
-### Outlook
-
-1. Abonelik URL’sini kopyalayın.
-2. [outlook.com](https://outlook.com) veya web üzerinde Outlook’ta oturum açın ve Takvim bölümüne geçin.
-3. **Takvim ekle** → **Web’den abone ol**.
-4. URL’yi yapıştırıp **İçeri aktar**’a tıklayın.
-
-[Microsoft Destek: Takvime abone olma](https://support.microsoft.com/tr-tr/outlook/import-or-subscribe-to-a-calendar-in-outlook-com-or-outlook-on-the-web)
-
-## ICS Feed URL’leri
-
-| Feed | URL |
-| --- | --- |
-| Tüm kategoriler | `https://takvim.omergulcicek.com/feeds/all.ics` |
-| Tek kategori | `https://takvim.omergulcicek.com/feeds/{slug}.ics` |
-| Seçili kategoriler | `https://takvim.omergulcicek.com/feeds/subscribe.ics?k=slug1,slug2` |
-
-Örnek: yalnızca Dini Günler → `/feeds/dini-gunler.ics`
-
-### Teknoloji yığını
-
-- [TanStack Start](https://tanstack.com/start) + [TanStack Router](https://tanstack.com/router) — SSR ve yönlendirme
-- [TanStack Query](https://tanstack.com/query) — sunucu verisi önbellekleme
-- [Supabase](https://supabase.com) — Postgres veritabanı
-- [React 19](https://react.dev) + [Tailwind CSS 4](https://tailwindcss.com)
-- [date-fns](https://date-fns.org) + Diyanet Hicri anchor’ları — Miladi/Hicri tarih dönüşümü
-- [Vite 8](https://vite.dev) + [Nitro](https://nitro.build) — derleme ve sunucu
+```bash
+pnpm dev
+pnpm build
+pnpm typecheck
+pnpm lint
+```

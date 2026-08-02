@@ -1,7 +1,9 @@
-const DEFAULT_SITE_URL = "https://takvim.omergulcicek.com/";
+import { env } from "@/env";
+
+const DEFAULT_SITE_URL = "https://takvim.omergulcicek.com";
 
 export function getSiteUrl(): string {
-  const configured = import.meta.env.VITE_SITE_URL;
+  const configured = env.VITE_SITE_URL ?? env.VITE_APP_URL;
   if (typeof configured === "string" && configured.length > 0) {
     return configured.replace(/\/$/, "");
   }
