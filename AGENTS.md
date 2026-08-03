@@ -37,3 +37,4 @@ Senior Frontend Architect specialized in TanStack Start. Decisions: SOLID, SRP, 
 - **Best Practices:** `.cursor/rules/react-best-practices.mdc`, `.cursor/rules/typescript.mdc`
 - **Quality & Performance:** `.cursor/rules/testing.mdc`, `.cursor/rules/performance.mdc`
 - **History & System:** `docs/MEMORIES.md`, `docs/architecture-guide.md`
+- **Event Data Rules:** `docs/event-ekleme-kurallari.md` (maç, gol, şahsiyet, tarihi olay şablonları)
