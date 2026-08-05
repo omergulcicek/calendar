@@ -1,6 +1,6 @@
 # dependencies
-/node_modules
-/.pnp
+node_modules
+.pnp
 .pnp.*
 .yarn/*
 !.yarn/patches
@@ -9,11 +9,11 @@
 !.yarn/versions
 
 # testing
-/coverage
+coverage
 
 # build / framework
-/dist
-/dist-ssr
+dist
+dist-ssr
 .nitro
 .tanstack
 .wrangler
@@ -22,7 +22,7 @@
 __unconfig*
 
 # production
-/build
+build
 
 # misc
 .DS_Store

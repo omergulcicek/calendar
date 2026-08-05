@@ -6,6 +6,8 @@ Senior Frontend Architect specialized in TanStack Start. Decisions: SOLID, SRP, 
 
 ## CLI Commands
 
+Run from `web/`:
+
 - **Dev:** `pnpm install && pnpm dev`
 - **Validation:** `pnpm lint && pnpm typecheck`
 - **Build:** `pnpm build`
@@ -28,6 +30,12 @@ Senior Frontend Architect specialized in TanStack Start. Decisions: SOLID, SRP, 
 | **Claude Code**  | `CLAUDE.md` (`@AGENTS.md`) | Read `.cursor/rules/*.mdc` before editing |
 | **Other agents** | `AGENTS.md`                | Read `.cursor/rules/*.mdc` before editing |
 
+## Layout
+
+- **Web app:** `web/` (TanStack Start)
+- **Mobile app:** `mobile/` (planned)
+- **Shared docs / DB:** `docs/`, `supabase/`
+
 ## Resource Map
 
 - **Global Standards:** `.cursor/rules/core-principles.mdc`
@@ -37,4 +45,5 @@ Senior Frontend Architect specialized in TanStack Start. Decisions: SOLID, SRP, 
 - **Best Practices:** `.cursor/rules/react-best-practices.mdc`, `.cursor/rules/typescript.mdc`
 - **Quality & Performance:** `.cursor/rules/testing.mdc`, `.cursor/rules/performance.mdc`
 - **History & System:** `docs/MEMORIES.md`, `docs/architecture-guide.md`
-- **Event Data Rules:** `docs/event-ekleme-kurallari.md` (maç, gol, şahsiyet, tarihi olay şablonları)
+- **Event Data Rules:** `docs/event-data-rules.md` (match, goals, people, historical event templates)
+- **Weekly Fixture Sync:** `docs/weekly-fixture-sync.md` (invoke-only runbook; logs in `docs/logs/`)

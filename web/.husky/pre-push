@@ -1,0 +1,2 @@
+cd web
+pnpm run typecheck && pnpm run lint:ci

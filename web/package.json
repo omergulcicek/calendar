@@ -30,7 +30,7 @@
     "lint:fix": "eslint . --fix --cache && prettier --write .",
     "lint:ci": "eslint . --max-warnings=0 && prettier --check .",
     "typecheck": "tsc --noEmit",
-    "prepare": "husky",
+    "prepare": "cd .. && husky web/.husky",
     "changeset": "changeset",
     "changeset:version": "changeset version",
     "changeset:publish": "changeset publish"
