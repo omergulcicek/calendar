@@ -10,7 +10,8 @@ This file serves as a persistent memory bank for the project. It documents key d
 ## Key Decisions
 
 - **2026-08-02 - Süper Lig description:** Süper Lig maçlarına `description` yazılmaz (`NULL`). Title formatı: `Ev Sahibi - Deplasman`. Süre: başlangıç + 2 saat. Timezone: `Europe/Istanbul`. Sadece ilgili kulüp kategorisine bağlanır (ayrı Süper Lig kategorisi yok).
-- **2026-08-03 - Event kural seti:** Tam şablon → [`docs/event-ekleme-kurallari.md`](./event-ekleme-kurallari.md) (maç ekleme, gol/sonuç, şahsiyet, tarihi olay).
+- **2026-08-03 - Event kural seti:** Tam şablon → [`docs/event-data-rules.md`](./event-data-rules.md) (maç ekleme, gol/sonuç, şahsiyet, tarihi olay). Eski ad: `event-ekleme-kurallari.md`.
+- **2026-08-03 - Weekly fixture sync:** Invoke-only runbook → [`docs/weekly-fixture-sync.md`](./weekly-fixture-sync.md). Kapsam: 4 büyük + `sampiyonlar-ligi`; pencere: çağrı günü → +7 gün; bitmemiş maça skor yazılmaz; log: `docs/logs/YYYY-MM-DD-haftalik-kontrol.md`.
 - **2026-08-03 - Saat belirsiz:** Kickoff henüz net değilse maçı atlama; `12:00` (`Europe/Istanbul`) placeholder ile ekle, saat netleşince `UPDATE` et.
 
 ## Evolution

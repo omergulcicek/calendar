@@ -6,8 +6,6 @@ Senior Frontend Architect specialized in TanStack Start. Decisions: SOLID, SRP, 
 
 ## CLI Commands
 
-Run from `web/`:
-
 - **Dev:** `pnpm install && pnpm dev`
 - **Validation:** `pnpm lint && pnpm typecheck`
 - **Build:** `pnpm build`
@@ -29,12 +27,6 @@ Run from `web/`:
 | **Cursor**       | `AGENTS.md`                | `.cursor/rules/*.mdc` (auto-loaded)       |
 | **Claude Code**  | `CLAUDE.md` (`@AGENTS.md`) | Read `.cursor/rules/*.mdc` before editing |
 | **Other agents** | `AGENTS.md`                | Read `.cursor/rules/*.mdc` before editing |
-
-## Layout
-
-- **Web app:** `web/` (TanStack Start)
-- **Mobile app:** `mobile/` (planned)
-- **Shared docs / DB:** `docs/`, `supabase/`
 
 ## Resource Map
 

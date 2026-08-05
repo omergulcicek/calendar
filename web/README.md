@@ -1,6 +1,6 @@
 # Takvim Aboneliği
 
-![Takvim önizleme](./web/public/readme-video.gif)
+![Takvim önizleme](./public/readme-video.gif)
 
 [takvim.omergulcicek.com](https://takvim.omergulcicek.com)
 
