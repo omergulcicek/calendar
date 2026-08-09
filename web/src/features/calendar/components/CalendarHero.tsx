@@ -11,7 +11,19 @@ export function CalendarHero() {
   return (
     <RevealGroup mode="mount" className="mx-auto max-w-xl text-center">
       <RevealItem>
-        <h1 className="text-3xl font-black tracking-tight text-balance sm:text-4xl">TAKVİM</h1>
+        <img
+          src="/icon-192.png"
+          alt=""
+          width={80}
+          height={80}
+          decoding="async"
+          className="mx-auto size-16 rounded-2xl sm:size-20"
+        />
+      </RevealItem>
+      <RevealItem>
+        <h1 className="mt-4 text-3xl font-black tracking-tight text-balance sm:mt-5 sm:text-4xl">
+          TAKVİM
+        </h1>
       </RevealItem>
       <RevealItem>
         <p className="mt-3 text-sm text-pretty text-muted-foreground sm:text-base">
