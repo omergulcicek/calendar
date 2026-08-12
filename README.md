@@ -1,40 +1,42 @@
-# Takvim Aboneliği
+# Calendar Subscription
 
-![Takvim önizleme](./public/readme-video.gif)
+**English** | [Türkçe](./README.tr.md)
+
+![Calendar preview](./web/public/readme-video.gif)
 
 [takvim.omergulcicek.com](https://takvim.omergulcicek.com)
 
-İlgilendiğiniz günleri, maçları ve yıl dönümlerini Apple, Google veya Outlook takviminize abone olarak ekleyin. Etkinlikler kaynak güncellendikçe otomatik yenilenir; dosya indirmenize gerek yoktur.
+Free, open-source calendar subscription platform offering curated multi-category event feeds. Subscribe to the days, matches, and anniversaries you care about in Apple, Google, or Outlook Calendar. Events refresh automatically as sources update — no file downloads needed.
 
-Sitede aylık bir önizleme takvimi bulunur. Kategorileri seçip abonelik bağlantısını kopyalayarak takvim uygulamanıza eklersiniz. Ayrı renklerle görmek istiyorsanız her kategoriye tek tek abone olun; hepsini bir kerede eklerseniz tek takvim ve tek renk oluşur.
+The site includes a monthly calendar preview. Select categories, copy the subscription link, and add it to your calendar app. Subscribe to each category separately if you want distinct colors; combining them creates a single calendar with one color.
 
-## Takvim kategorileri
+## Calendar categories
 
-### Din ve İnanç
+### Religion & Faith
 
-- **Dini Günler** — Kandiller, bayramlar ve mübarek geceler
-- **İslam Tarihi** — İslam tarihindeki önemli günler ve yıl dönümleri
-- **Önemli Şahsiyetler** — Alimler, düşünürler, devlet adamları ve toplumsal liderlerin doğum / vefat yıl dönümleri
+- **Religious Days** — Kandils, festivals, and holy nights
+- **Islamic History** — Key dates and anniversaries in Islamic history
+- **Notable Figures** — Birth and death anniversaries of scholars, thinkers, statesmen, and community leaders
 
-### Kültür ve Edebiyat
+### Culture & Literature
 
-- **Milli ve Kültürel Günler** — Resmî günler, kültürel bayramlar ve farkındalık haftaları
-- **Türk Edebiyatı** — Edebiyatımızdan yazar ve eser yıl dönümleri
+- **National & Cultural Days** — Official days, cultural festivals, and awareness weeks
+- **Turkish Literature** — Author and work anniversaries from Turkish literature
 
-### Tarih
+### History
 
-- **Tarihî Olaylar** — Savaşlar, fetihler, kuşatmalar; trajediler, soykırımlar ve anma günleri
+- **Historical Events** — Wars, conquests, sieges; tragedies, genocides, and remembrance days
 
-### Futbol
+### Football
 
-- **Beşiktaş**, **Fenerbahçe**, **Galatasaray**, **Trabzonspor** — Lig, kupa ve Avrupa maçları
-- **Dünya Kupası** — FIFA Dünya Kupası maçları
-- **Şampiyonlar Ligi** — UEFA Şampiyonlar Ligi maçları
+- **Beşiktaş**, **Fenerbahçe**, **Galatasaray**, **Trabzonspor** — League, cup, and European matches
+- **World Cup** — FIFA World Cup matches
+- **Champions League** — UEFA Champions League matches
 
-## Nasıl kullanılır?
+## How to use
 
-1. Sitede istediğiniz kategorileri seçin.
-2. Abonelik bağlantısını kopyalayın.
-3. Apple Takvim, Google Takvim veya Outlook’ta abonelik olarak ekleyin.
+1. Select the categories you want on the site.
+2. Copy the subscription link.
+3. Add it as a subscription in Apple Calendar, Google Calendar, or Outlook.
 
-Adım adım anlatım sitedeki “Nasıl eklerim?” bölümünde yer alır.
+Step-by-step instructions are in the “How do I add it?” section on the site.
