@@ -28,20 +28,11 @@ import type { HijriDateFields } from "@/lib/hijri/hijri-date";
 import { cn } from "@/lib/utils";
 
 import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { CalendarEventSearch } from "@/features/calendar/components/CalendarEventSearch";
+import { CategoryFilter } from "@/features/calendar/components/CategoryFilter";
 import { SECTION_HEADING_CLASS } from "@/features/calendar/data/site-nav";
 import { getCategoryColor } from "@/features/calendar/helpers/categories";
-import { groupCategoriesForSelect } from "@/features/calendar/helpers/category-groups";
 
 // Hafta Pazartesi başlar (date-fns: 1 = Pazartesi).
 const WEEK_STARTS_ON = 1 as const;
@@ -258,11 +249,6 @@ export function MonthCalendar({
     [categoriesProp, events],
   );
 
-  const { groups: categoryGroups, ungrouped: ungroupedCategories } = useMemo(
-    () => groupCategoriesForSelect(categories),
-    [categories],
-  );
-
   const [selectedCategoryKey, setSelectedCategoryKey] = useState(ALL_CATEGORIES_KEY);
 
   const visibleEvents = useMemo(() => {
@@ -409,45 +395,14 @@ export function MonthCalendar({
     </div>
   );
 
-  function renderCategoryItem(category: CalendarCategory) {
-    const color = getCategoryColor(category.slug);
-    return (
-      <SelectItem key={category.key} value={category.key}>
-        <span className={cn("size-2 shrink-0 rounded-full", color.dot)} aria-hidden />
-        {category.name}
-      </SelectItem>
-    );
-  }
-
   const categorySelect = (
-    <Select value={selectedCategoryKey} onValueChange={setSelectedCategoryKey}>
-      <SelectTrigger
-        size="sm"
-        className="w-full max-w-56 min-w-0 md:w-56 [&_[data-slot=select-value]]:line-clamp-none"
-        aria-label="Kategori seç"
-      >
-        <SelectValue placeholder="Tüm Takvimler" />
-      </SelectTrigger>
-      <SelectContent
-        align="end"
-        position="popper"
-        className="w-[var(--radix-select-trigger-width)] md:w-56"
-      >
-        <SelectItem value={ALL_CATEGORIES_KEY}>Tüm Takvimler</SelectItem>
-        {categoryGroups.map((group) => (
-          <SelectGroup key={group.label}>
-            <SelectLabel>{group.label}</SelectLabel>
-            {group.categories.map(renderCategoryItem)}
-          </SelectGroup>
-        ))}
-        {ungroupedCategories.length > 0 ? (
-          <SelectGroup>
-            <SelectLabel>Diğer</SelectLabel>
-            {ungroupedCategories.map(renderCategoryItem)}
-          </SelectGroup>
-        ) : null}
-      </SelectContent>
-    </Select>
+    <CategoryFilter
+      categories={categories}
+      value={selectedCategoryKey}
+      allValue={ALL_CATEGORIES_KEY}
+      allLabel="Tüm Takvimler"
+      onValueChange={setSelectedCategoryKey}
+    />
   );
 
   return (
