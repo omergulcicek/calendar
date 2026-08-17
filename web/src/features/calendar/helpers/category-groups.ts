@@ -2,6 +2,7 @@ export type CategoryGroupDefinition = {
   label: string;
   slugs: readonly string[];
   nested?: boolean;
+  colorSlug?: string;
 };
 
 // Takvim filtresi ve benzeri UI'larda kategorilerin mantıksal grupları.
@@ -9,6 +10,7 @@ export const CATEGORY_GROUPS: readonly CategoryGroupDefinition[] = [
   {
     label: "Futbol",
     nested: true,
+    colorSlug: "dunya-kupasi",
     // Kulüpler önce, turnuvalar sonra (Türkçe alfabetik değil; okuma sırası).
     slugs: [
       "besiktas",
@@ -45,6 +47,7 @@ export type CategorySelectGroup<T extends CategoryForGrouping> = {
   label: string;
   categories: T[];
   nested: boolean;
+  colorSlug: string | null;
 };
 
 export function groupCategoriesForSelect<T extends CategoryForGrouping>(
@@ -73,6 +76,7 @@ export function groupCategoriesForSelect<T extends CategoryForGrouping>(
         label: group.label,
         categories: groupCategories,
         nested: group.nested === true,
+        colorSlug: group.colorSlug ?? null,
       });
     }
   }

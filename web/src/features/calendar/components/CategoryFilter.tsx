@@ -37,13 +37,15 @@ type CategoryFilterProps = {
 function CategoryMenuItem({
   category,
   selected,
+  colorSlug,
   onSelect,
 }: {
   category: FilterCategory;
   selected: boolean;
+  colorSlug?: string | null;
   onSelect: (key: string) => void;
 }): JSX.Element {
-  const color = getCategoryColor(category.slug);
+  const color = getCategoryColor(colorSlug ?? category.slug);
 
   return (
     <DropdownMenuItem className="pr-8" onSelect={() => onSelect(category.key)}>
@@ -102,6 +104,13 @@ export function CategoryFilter({
                   group.categories.some((category) => category.key === value) && "bg-accent",
                 )}
               >
+                <span
+                  className={cn(
+                    "size-2 shrink-0 rounded-full",
+                    getCategoryColor(group.colorSlug).dot,
+                  )}
+                  aria-hidden
+                />
                 {group.label}
               </DropdownMenuSubTrigger>
               <DropdownMenuSubContent className="w-56">
@@ -110,6 +119,7 @@ export function CategoryFilter({
                     key={category.key}
                     category={category}
                     selected={value === category.key}
+                    colorSlug={group.colorSlug}
                     onSelect={onValueChange}
                   />
                 ))}

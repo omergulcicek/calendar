@@ -93,13 +93,13 @@ export const CATEGORY_COLOR_MAP: Record<string, CategoryColorKey> = {
   "tarihi-olaylar": "stone700",
   "turk-edebiyati": "blue600",
   "dunya-kupasi": "lime500",
-  "sampiyonlar-ligi": "purple600",
-  "premier-lig": "violet800",
-  "la-liga": "orange500",
-  besiktas: "black",
-  fenerbahce: "amber500",
-  galatasaray: "red600",
-  trabzonspor: "rose800",
+  "sampiyonlar-ligi": "lime500",
+  "premier-lig": "lime500",
+  "la-liga": "lime500",
+  besiktas: "lime500",
+  fenerbahce: "lime500",
+  galatasaray: "lime500",
+  trabzonspor: "lime500",
 };
 
 export function getCategoryColor(slug: string | null | undefined): CategoryColorStyle {
