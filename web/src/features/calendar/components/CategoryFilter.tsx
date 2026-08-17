@@ -9,9 +9,7 @@ import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
@@ -19,6 +17,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { getCategoryColor } from "@/features/calendar/helpers/categories";
 import { groupCategoriesForSelect } from "@/features/calendar/helpers/category-groups";
+import type { CategorySelectGroup } from "@/features/calendar/helpers/category-groups";
 
 type FilterCategory = {
   key: string;
@@ -65,6 +64,31 @@ export function CategoryFilter({
 }: CategoryFilterProps): JSX.Element {
   const { groups, ungrouped } = useMemo(() => groupCategoriesForSelect(categories), [categories]);
 
+  const menuRows = useMemo(() => {
+    const nestedGroups = groups.filter((group) => group.nested);
+    const flatCategories = [
+      ...groups.filter((group) => !group.nested).flatMap((group) => group.categories),
+      ...ungrouped,
+    ];
+    const rows: Array<
+      | { kind: "item"; sortKey: string; category: FilterCategory }
+      | { kind: "nested"; sortKey: string; group: CategorySelectGroup<FilterCategory> }
+    > = [
+      ...flatCategories.map((category) => ({
+        kind: "item" as const,
+        sortKey: category.name,
+        category,
+      })),
+      ...nestedGroups.map((group) => ({
+        kind: "nested" as const,
+        sortKey: group.label,
+        group,
+      })),
+    ];
+    rows.sort((a, b) => a.sortKey.localeCompare(b.sortKey, "tr"));
+    return rows;
+  }, [groups, ungrouped]);
+
   const selectedCategory = categories.find((category) => category.key === value);
   const selectedColor = getCategoryColor(selectedCategory?.slug);
   const triggerLabel = selectedCategory?.name ?? allLabel;
@@ -96,66 +120,46 @@ export function CategoryFilter({
             <Check className="absolute right-2 size-4" strokeWidth={2} />
           ) : null}
         </DropdownMenuItem>
-        {groups.map((group) =>
-          group.nested ? (
-            <DropdownMenuSub key={group.label}>
+        {menuRows.map((row) =>
+          row.kind === "nested" ? (
+            <DropdownMenuSub key={row.group.label}>
               <DropdownMenuSubTrigger
                 className={cn(
-                  group.categories.some((category) => category.key === value) && "bg-accent",
+                  row.group.categories.some((category) => category.key === value) && "bg-accent",
                 )}
               >
                 <span
                   className={cn(
                     "size-2 shrink-0 rounded-full",
-                    getCategoryColor(group.colorSlug).dot,
+                    getCategoryColor(row.group.colorSlug).dot,
                   )}
                   aria-hidden
                 />
-                {group.label}
+                {row.group.label}
               </DropdownMenuSubTrigger>
               <DropdownMenuSubContent className="w-56">
-                {group.categories.map((category) => (
-                  <CategoryMenuItem
-                    key={category.key}
-                    category={category}
-                    selected={value === category.key}
-                    colorSlug={group.colorSlug}
-                    onSelect={onValueChange}
-                  />
-                ))}
+                {[...row.group.categories]
+                  .sort((a, b) => a.name.localeCompare(b.name, "tr"))
+                  .map((category) => (
+                    <CategoryMenuItem
+                      key={category.key}
+                      category={category}
+                      selected={value === category.key}
+                      colorSlug={row.group.colorSlug}
+                      onSelect={onValueChange}
+                    />
+                  ))}
               </DropdownMenuSubContent>
             </DropdownMenuSub>
           ) : (
-            <DropdownMenuGroup key={group.label}>
-              <DropdownMenuLabel className="px-2 py-1.5 text-xs font-medium text-muted-foreground">
-                {group.label}
-              </DropdownMenuLabel>
-              {group.categories.map((category) => (
-                <CategoryMenuItem
-                  key={category.key}
-                  category={category}
-                  selected={value === category.key}
-                  onSelect={onValueChange}
-                />
-              ))}
-            </DropdownMenuGroup>
+            <CategoryMenuItem
+              key={row.category.key}
+              category={row.category}
+              selected={value === row.category.key}
+              onSelect={onValueChange}
+            />
           ),
         )}
-        {ungrouped.length > 0 ? (
-          <DropdownMenuGroup>
-            <DropdownMenuLabel className="px-2 py-1.5 text-xs font-medium text-muted-foreground">
-              Diğer
-            </DropdownMenuLabel>
-            {ungrouped.map((category) => (
-              <CategoryMenuItem
-                key={category.key}
-                category={category}
-                selected={value === category.key}
-                onSelect={onValueChange}
-              />
-            ))}
-          </DropdownMenuGroup>
-        ) : null}
       </DropdownMenuContent>
     </DropdownMenu>
   );
