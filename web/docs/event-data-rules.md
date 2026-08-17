@@ -11,14 +11,14 @@ When this file is referenced for match results or kickoff changes, also follow t
 
 ## 1. Global rules
 
-| Rule             | Detail                                                                                |
-| ---------------- | ------------------------------------------------------------------------------------- |
-| Timezone         | Timed matches: `('YYYY-MM-DD HH:MM:SS'::timestamp AT TIME ZONE 'Europe/Istanbul')`    |
-| Duration (match) | `end_date = start_date + interval '2 hours'` (extend further if extra time/penalties) |
-| Status           | `'published'`                                                                         |
-| Idempotent       | `NOT EXISTS` (title ± start_date) + `ON CONFLICT DO NOTHING` (junction)               |
-| Unknown kickoff  | Use **12:00** placeholder (`Europe/Istanbul`); `UPDATE` when kickoff is confirmed     |
-| Language         | Title/description in Turkish; club names match on-screen / official spelling          |
+| Rule             | Detail                                                                                                                                                                                                                                                                                                                              |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Timezone         | Timed matches: `('YYYY-MM-DD HH:MM:SS'::timestamp AT TIME ZONE 'Europe/Istanbul')`                                                                                                                                                                                                                                                  |
+| Duration (match) | `end_date = start_date + interval '2 hours'`. If that lands on **00:00** (`Europe/Istanbul`), use **23:55** on the kickoff day instead — so ICS / Apple / Google do not place the match on the next calendar day. Leave `00:15` / `00:30` and other after-midnight ends as-is. Extra time/penalties may still extend past midnight. |
+| Status           | `'published'`                                                                                                                                                                                                                                                                                                                       |
+| Idempotent       | `NOT EXISTS` (title ± start_date) + `ON CONFLICT DO NOTHING` (junction)                                                                                                                                                                                                                                                             |
+| Unknown kickoff  | Use **12:00** placeholder (`Europe/Istanbul`); `UPDATE` when kickoff is confirmed                                                                                                                                                                                                                                                   |
+| Language         | Title/description in Turkish; club names match on-screen / official spelling                                                                                                                                                                                                                                                        |
 
 ### Migration filename
 
@@ -55,6 +55,8 @@ Do **not** put the score in the title before kickoff.
 | Competition                 | Description                                                   |
 | --------------------------- | ------------------------------------------------------------- |
 | Süper Lig                   | **`NULL`** — omit                                             |
+| La Liga                     | **`NULL`** — omit                                             |
+| Premier Lig                 | **`NULL`** — omit                                             |
 | Europa League qualifying    | `'Avrupa Ligi … eleme turu ilk maç'` / `'… rövanş maçı'`      |
 | Champions League qualifying | `'Şampiyonlar Ligi … eleme turu ilk maç'` / `'… rövanş maçı'` |
 
@@ -63,6 +65,8 @@ Do **not** put the score in the title before kickoff.
 | Match type       | `event_categories` slugs                                                                                                   |
 | ---------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | Süper Lig        | Club slug(s): `galatasaray` \| `fenerbahce` \| `besiktas` \| `trabzonspor` — derbies link **both** clubs to the same event |
+| La Liga          | `la-liga`                                                                                                                  |
+| Premier Lig      | `premier-lig`                                                                                                              |
 | Champions League | Club **+** `sampiyonlar-ligi`                                                                                              |
 | Europa League    | Club only for now (no `avrupa-ligi` category)                                                                              |
 | World Cup        | `dunya-kupasi`                                                                                                             |
@@ -83,6 +87,8 @@ WITH inserted AS (
     NULL, -- or Europa/UCL round text
     ('2026-08-14 21:30:00'::timestamp AT TIME ZONE 'Europe/Istanbul'),
     ('2026-08-14 21:30:00'::timestamp AT TIME ZONE 'Europe/Istanbul') + interval '2 hours',
+    -- 22:00 kickoff → end is 00:00; write 23:55 on the kickoff day instead:
+    -- ('2026-08-21 23:55:00'::timestamp AT TIME ZONE 'Europe/Istanbul'),
     false,
     'published',
     'none'
@@ -105,11 +111,12 @@ ON CONFLICT DO NOTHING;
 
 1. Title: `Home - Away` (no score)
 2. Kickoff known? If not → `12:00` placeholder
-3. `Europe/Istanbul` + `+ 2 hours`
+3. `Europe/Istanbul` + `+ 2 hours`; if end would be `00:00`, use **23:55** same kickoff day
 4. Süper Lig → `description NULL`, club only
-5. UCL → round description + club + `sampiyonlar-ligi`
-6. `NOT EXISTS` + `ON CONFLICT DO NOTHING`
-7. `is_all_day = false`, `recurrence = 'none'`, `status = 'published'`
+5. La Liga / Premier Lig → `description NULL`, competition slug only
+6. UCL → round description + club + `sampiyonlar-ligi`
+7. `NOT EXISTS` + `ON CONFLICT DO NOTHING`
+8. `is_all_day = false`, `recurrence = 'none'`, `status = 'published'`
 
 ---
 
@@ -146,14 +153,14 @@ Player Name <minute>'' (Kırmızı kart)
 Player Name 37'', 45+1'', 87'' (Penaltı)   -- same player, multiple goals
 ```
 
-| Rule             | Detail                                                                        |
-| ---------------- | ----------------------------------------------------------------------------- |
-| Apostrophe       | In SQL minutes use `37''` → displays as `37'`                                 |
-| Order            | Home goals first, blank line, then away                                       |
-| Annotations      | `(Penaltı)`, `(Kırmızı kart)`, own goal: `(kk)`                               |
-| No goals         | `description = NULL` (`NULLIF(E'', '')`)                                      |
-| Round text       | On result, replace round description with the goal list                       |
-| Idempotent WHERE | Old title **or** scored title: `WHERE title = 'A - B' OR title = 'A 1 - 0 B'` |
+| Rule             | Detail                                                                                                                                               |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Apostrophe       | In SQL minutes use `37''` → displays as `37'`                                                                                                        |
+| Order            | Home lines first, blank line, then away — **omit the blank (and the empty side) when only one side has lines**; never start or end with a blank line |
+| Annotations      | `(Penaltı)`, `(Kırmızı kart)`, own goal: `(kk)`                                                                                                      |
+| No goals         | `description = NULL` (`NULLIF(E'', '')`)                                                                                                             |
+| Round text       | On result, replace round description with the goal list                                                                                              |
+| Idempotent WHERE | Old title **or** scored title: `WHERE title = 'A - B' OR title = 'A 1 - 0 B'`                                                                        |
 
 ### 3.3 SQL template (result)
 
@@ -235,17 +242,17 @@ Hijri days often manage `start_date`/`end_date` via override tables; inspect exi
 
 ## 7. Field summary
 
-| Field              | Match (timed)               | Anniversary / commemoration             |
-| ------------------ | --------------------------- | --------------------------------------- |
-| `title`            | Home - Away / scored        | `{Name}: … Yıl Dönümü` or event name    |
-| `description`      | Round / goals / `NULL` (SL) | Usually `NULL`                          |
-| `start` / `end`    | Istanbul + 2h               | All-day UTC window                      |
-| `is_all_day`       | `false`                     | `true`                                  |
-| `recurrence`       | `none`                      | `yearly`                                |
-| `event_categories` | Club ± competition          | Category slug                           |
-| `subject_id`       | —                           | Required                                |
-| `kind`             | —                           | `birth` / `death` / `commemoration` / … |
-| `calendar_system`  | (default)                   | `gregorian` or `hijri`                  |
+| Field              | Match (timed)                   | Anniversary / commemoration             |
+| ------------------ | ------------------------------- | --------------------------------------- |
+| `title`            | Home - Away / scored            | `{Name}: … Yıl Dönümü` or event name    |
+| `description`      | Round / goals / `NULL` (SL)     | Usually `NULL`                          |
+| `start` / `end`    | Istanbul + 2h (`00:00` → 23:55) | All-day UTC window                      |
+| `is_all_day`       | `false`                         | `true`                                  |
+| `recurrence`       | `none`                          | `yearly`                                |
+| `event_categories` | Club ± competition              | Category slug                           |
+| `subject_id`       | —                               | Required                                |
+| `kind`             | —                               | `birth` / `death` / `commemoration` / … |
+| `calendar_system`  | (default)                       | `gregorian` or `hijri`                  |
 
 ---
 
@@ -270,6 +277,7 @@ Update UI maps as well as SQL seeds:
 | Situation                 | Action                                              |
 | ------------------------- | --------------------------------------------------- |
 | Süper Lig match           | No description; club only                           |
+| La Liga / Premier Lig     | No description; competition slug only               |
 | Europa / UCL qualifying   | Round description; UCL also adds `sampiyonlar-ligi` |
 | Kickoff unknown           | `12:00` placeholder; update when confirmed          |
 | Match finished            | `update_*_result`: scored title + goal description  |

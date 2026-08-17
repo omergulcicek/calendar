@@ -32,6 +32,8 @@ The site includes a monthly calendar preview. Select categories, copy the subscr
 - **Beşiktaş**, **Fenerbahçe**, **Galatasaray**, **Trabzonspor** — League, cup, and European matches
 - **World Cup** — FIFA World Cup matches
 - **Champions League** — UEFA Champions League matches
+- **Premier League** — English Premier League matches
+- **La Liga** — Spanish La Liga matches
 
 ## How to use
 

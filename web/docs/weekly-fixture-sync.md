@@ -64,12 +64,12 @@ Collect per event:
 
 For each event in the window:
 
-| Check                               | If source differs / match finished                                                                                                                                    |
-| ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Kickoff date/time (Europe/Istanbul) | Plan `UPDATE` of `start_date` / `end_date` (`end = start + 2 hours`, longer only if extra time already known for a finished match that went long — rare at this step) |
-| Match status                        | If **FT / finished** and title unscored → plan result update per event-data-rules §3                                                                                  |
-| Match status                        | If **not finished** → no result fields; only kickoff update if needed                                                                                                 |
-| Postponed / rescheduled             | Update datetime; log old → new                                                                                                                                        |
+| Check                               | If source differs / match finished                                                                                                                                                                                             |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Kickoff date/time (Europe/Istanbul) | Plan `UPDATE` of `start_date` / `end_date` (`end = start + 2 hours`; if that is **00:00** TR, use **23:55** same kickoff day; longer only if extra time already known for a finished match that went long — rare at this step) |
+| Match status                        | If **FT / finished** and title unscored → plan result update per event-data-rules §3                                                                                                                                           |
+| Match status                        | If **not finished** → no result fields; only kickoff update if needed                                                                                                                                                          |
+| Postponed / rescheduled             | Update datetime; log old → new                                                                                                                                                                                                 |
 
 Placeholder `12:00` kickoffs: if the source now has a confirmed kickoff, update them.
 
@@ -141,6 +141,32 @@ Only for **finished + unscored** events. Follow event-data-rules exactly:
 - Description → goal list (`E'...'`), or `NULL` if no goals / empty
 - Replace any pre-match round description with the goal list
 - Idempotent `WHERE title = 'Home - Away' OR title = 'Home X - Y Away'`
+
+### Description layout (no leading blank)
+
+Home lines, then a blank separator, then away lines — **but only when both sides have at least one line** (goal or red card).
+
+| Situation               | Description starts with                |
+| ----------------------- | -------------------------------------- |
+| Only home has lines     | First home line (no trailing blank)    |
+| Only away has lines     | First away line (**no leading blank**) |
+| Both sides have lines   | Home lines → blank → away lines        |
+| Neither (0-0, no cards) | `NULL`                                 |
+
+Wrong (leading blank when home is empty):
+
+```text
+
+Kassoum Ouattara 71' (Kırmızı kart)
+Semih Kılıçsoy 80'
+```
+
+Right:
+
+```text
+Kassoum Ouattara 71' (Kırmızı kart)
+Semih Kılıçsoy 80'
+```
 
 Never invent scorers. If FT score is known but scorer list is not verified → update title/score only and set description carefully per rules (or skip description and log the gap). Prefer skipping the whole result update over guessing minutes/names.
 

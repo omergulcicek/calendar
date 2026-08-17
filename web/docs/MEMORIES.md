@@ -9,6 +9,8 @@ This file serves as a persistent memory bank for the project. It documents key d
 
 ## Key Decisions
 
+- **2026-08-17 - Maç bitişi 00:00:** `end = start + 2 saat` tam **00:00** (`Europe/Istanbul`) olursa **23:55** (aynı kickoff günü) yaz. Aksi halde ICS/Apple/Google maçı ertesi güne koyar. `00:15` / `00:30` olduğu gibi kalır.
+- **2026-08-17 - Premier Lig / La Liga description:** Lig maçlarına `description` yazılmaz (`NULL`). Title formatı: `Ev Sahibi - Deplasman`. Süre: başlangıç + 2 saat (`00:00` → 23:55). Timezone: `Europe/Istanbul`. Yalnızca lig kategorisine bağlanır (`premier-lig` / `la-liga`); ayrı kulüp kategorisi yok.
 - **2026-08-02 - Süper Lig description:** Süper Lig maçlarına `description` yazılmaz (`NULL`). Title formatı: `Ev Sahibi - Deplasman`. Süre: başlangıç + 2 saat. Timezone: `Europe/Istanbul`. Sadece ilgili kulüp kategorisine bağlanır (ayrı Süper Lig kategorisi yok).
 - **2026-08-03 - Event kural seti:** Tam şablon → [`docs/event-data-rules.md`](./event-data-rules.md) (maç ekleme, gol/sonuç, şahsiyet, tarihi olay). Eski ad: `event-ekleme-kurallari.md`.
 - **2026-08-03 - Weekly fixture sync:** Invoke-only runbook → [`docs/weekly-fixture-sync.md`](./weekly-fixture-sync.md). Kapsam: 4 büyük + `sampiyonlar-ligi`; pencere: çağrı günü → +7 gün; bitmemiş maça skor yazılmaz; log: `docs/logs/YYYY-MM-DD-haftalik-kontrol.md`.
@@ -16,6 +18,9 @@ This file serves as a persistent memory bank for the project. It documents key d
 
 ## Evolution
 
+- **2026-08-17 - 00:00 bitiş clamp:** Timed maçlarda TR `00:00` bitiş → kickoff günü `23:55`.
+- **2026-08-17 - Premier Lig fikstürü:** Arsenal, Liverpool, Manchester City, Manchester United, Tottenham ve Chelsea'nin Ağustos–Eylül maçları → `premier-lig`. Biten maçlar, saati belirsiz kayıtlar ve Lig Kupası atlandı. Derbiler tek event.
+- **2026-08-17 - Premier Lig ve La Liga:** Futbol grubuna `premier-lig` ve `la-liga` kategorileri eklendi. Lig maçlarında `description NULL`; yalnızca lig slug'ı bağlanır (ayrı kulüp kategorisi yok). La Liga'ya Barcelona ve Real Madrid'in Ağustos–Eylül fikstürü eklendi.
 - **2026-08-03 - Trabzonspor 2026/27 Süper Lig fikstürü:** 34 maç → `trabzonspor`. Opener `Kasımpaşa - Trabzonspor` (15.08 **19:00**, net saat korundu); diğerleri `12:00`. GS/FB/BJK derbilerine `trabzonspor` eklendi.
 - **2026-08-03 - Beşiktaş 2026/27 Süper Lig fikstürü:** 33 maç (opener `Beşiktaş - Eyüpspor` hariç zaten vardı) → `besiktas`, `12:00` placeholder. GS/FB derbileri mevcut event’e `besiktas` eklendi. Önceden atlanan `Alanyaspor - Beşiktaş` (23.08) eklendi.
 - **2026-08-03 - Fenerbahçe 2026/27 Süper Lig fikstürü:** 33 maç (opener `Gençlerbirliği - Fenerbahçe` hariç zaten vardı) → `fenerbahce`, `12:00` placeholder. GS derbileri tek event: `galatasaray` + `fenerbahce`.

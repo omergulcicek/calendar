@@ -15,6 +15,8 @@ export const CATEGORY_GROUPS: readonly CategoryGroupDefinition[] = [
       "trabzonspor",
       "dunya-kupasi",
       "sampiyonlar-ligi",
+      "premier-lig",
+      "la-liga",
     ],
   },
   {

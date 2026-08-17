@@ -30,6 +30,8 @@ Sitede aylık bir önizleme takvimi bulunur. Kategorileri seçip abonelik bağla
 - **Beşiktaş**, **Fenerbahçe**, **Galatasaray**, **Trabzonspor** — Lig, kupa ve Avrupa maçları
 - **Dünya Kupası** — FIFA Dünya Kupası maçları
 - **Şampiyonlar Ligi** — UEFA Şampiyonlar Ligi maçları
+- **Premier Lig** — İngiltere Premier Lig maçları
+- **La Liga** — İspanya La Liga maçları
 
 ## Nasıl kullanılır?
 
