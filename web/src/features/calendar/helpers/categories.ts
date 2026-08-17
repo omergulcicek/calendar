@@ -9,7 +9,7 @@ export type CategoryColorKey =
   | "indigo600"
   | "stone700"
   | "blue600"
-  | "lime500"
+  | "green400"
   | "purple600"
   | "black"
   | "amber500"
@@ -50,9 +50,9 @@ export const COLOR_STYLES: Record<CategoryColorKey | "default", CategoryColorSty
     chip: "bg-blue-100 text-blue-900 dark:bg-blue-600/20 dark:text-blue-200",
     dot: "bg-blue-600",
   },
-  lime500: {
-    chip: "bg-lime-100 text-lime-900 dark:bg-lime-500/15 dark:text-lime-300",
-    dot: "bg-lime-500",
+  green400: {
+    chip: "bg-green-100 text-green-800 dark:bg-green-400/20 dark:text-green-300",
+    dot: "bg-green-400",
   },
   purple600: {
     chip: "bg-purple-100 text-purple-900 dark:bg-purple-600/15 dark:text-purple-300",
@@ -92,14 +92,14 @@ export const CATEGORY_COLOR_MAP: Record<string, CategoryColorKey> = {
   "onemli-sahsiyetler": "indigo600",
   "tarihi-olaylar": "stone700",
   "turk-edebiyati": "blue600",
-  "dunya-kupasi": "lime500",
-  "sampiyonlar-ligi": "lime500",
-  "premier-lig": "lime500",
-  "la-liga": "lime500",
-  besiktas: "lime500",
-  fenerbahce: "lime500",
-  galatasaray: "lime500",
-  trabzonspor: "lime500",
+  "dunya-kupasi": "green400",
+  "sampiyonlar-ligi": "green400",
+  "premier-lig": "green400",
+  "la-liga": "green400",
+  besiktas: "green400",
+  fenerbahce: "green400",
+  galatasaray: "green400",
+  trabzonspor: "green400",
 };
 
 export function getCategoryColor(slug: string | null | undefined): CategoryColorStyle {

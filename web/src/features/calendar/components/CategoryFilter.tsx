@@ -36,19 +36,21 @@ type CategoryFilterProps = {
 function CategoryMenuItem({
   category,
   selected,
-  colorSlug,
+  showDot = true,
   onSelect,
 }: {
   category: FilterCategory;
   selected: boolean;
-  colorSlug?: string | null;
+  showDot?: boolean;
   onSelect: (key: string) => void;
 }): JSX.Element {
-  const color = getCategoryColor(colorSlug ?? category.slug);
+  const color = getCategoryColor(category.slug);
 
   return (
     <DropdownMenuItem className="pr-8" onSelect={() => onSelect(category.key)}>
-      <span className={cn("size-2 shrink-0 rounded-full", color.dot)} aria-hidden />
+      {showDot ? (
+        <span className={cn("size-2 shrink-0 rounded-full", color.dot)} aria-hidden />
+      ) : null}
       <span className="min-w-0 flex-1 truncate">{category.name}</span>
       {selected ? <Check className="absolute right-2 size-4" strokeWidth={2} /> : null}
     </DropdownMenuItem>
@@ -145,7 +147,7 @@ export function CategoryFilter({
                       key={category.key}
                       category={category}
                       selected={value === category.key}
-                      colorSlug={row.group.colorSlug}
+                      showDot={false}
                       onSelect={onValueChange}
                     />
                   ))}
