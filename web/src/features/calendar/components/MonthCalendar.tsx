@@ -124,6 +124,14 @@ function eventsForDay(events: CalendarEvent[], day: Date): CalendarEvent[] {
     });
 }
 
+function compareEventsChronologically(a: CalendarEvent, b: CalendarEvent): number {
+  const byStart = a.start.getTime() - b.start.getTime();
+  if (byStart !== 0) return byStart;
+  // Aynı anda başlayanlarda tüm gün olanlar önce.
+  if (!!a.allDay !== !!b.allDay) return a.allDay ? -1 : 1;
+  return a.title.localeCompare(b.title, "tr");
+}
+
 function eventsInRange(events: CalendarEvent[], rangeStart: Date, rangeEnd: Date): CalendarEvent[] {
   const start = startOfDay(rangeStart);
   const end = startOfDay(rangeEnd);
@@ -133,10 +141,15 @@ function eventsInRange(events: CalendarEvent[], rangeStart: Date, rangeEnd: Date
       const eventEnd = startOfDay(event.end);
       return eventStart <= end && eventEnd >= start;
     })
-    .sort((a, b) => {
-      if (!!a.allDay !== !!b.allDay) return a.allDay ? -1 : 1;
-      return a.start.getTime() - b.start.getTime();
-    });
+    .sort(compareEventsChronologically);
+}
+
+function eventTouchesDay(event: CalendarEvent, day: Date): boolean {
+  const dayStart = startOfDay(day);
+  return isWithinInterval(dayStart, {
+    start: startOfDay(event.start),
+    end: startOfDay(event.end),
+  });
 }
 
 // Bir ayın 7x6 ızgarasında gösterilecek günleri (önceki/sonraki ay taşmaları
@@ -184,9 +197,11 @@ function EventChip({
 function ListEventRow({
   event,
   onClick,
+  isActiveDay = false,
 }: {
   event: CalendarEvent;
   onClick?: (event: CalendarEvent) => void;
+  isActiveDay?: boolean;
 }) {
   const firstCategory = event.categories[0];
   const color = getCategoryColor(firstCategory?.slug);
@@ -198,7 +213,10 @@ function ListEventRow({
     <button
       type="button"
       onClick={() => onClick?.(event)}
-      className="flex w-full cursor-pointer flex-col gap-1.5 px-4 py-3 text-left transition-colors duration-100 ease-out-strong hover:bg-accent/70 sm:flex-row sm:items-start sm:gap-4"
+      className={cn(
+        "flex w-full cursor-pointer flex-col gap-1.5 px-4 py-3 text-left transition-colors duration-100 ease-out-strong sm:flex-row sm:items-start sm:gap-4",
+        isActiveDay ? "bg-primary/10 hover:bg-primary/15" : "hover:bg-accent/70",
+      )}
     >
       <div className="w-full text-sm text-muted-foreground tabular-nums sm:w-28 sm:shrink-0 sm:pt-0.5">
         {isMultiDay ? (
@@ -281,6 +299,8 @@ export function MonthCalendar({
     () => eventsInRange(visibleEvents, startOfMonth(currentMonth), endOfMonth(currentMonth)),
     [visibleEvents, currentMonth],
   );
+
+  const today = startOfDay(new Date());
 
   function handleSearchSelect(event: CalendarEvent) {
     setSelectedCategoryKey(ALL_CATEGORIES_KEY);
@@ -452,7 +472,12 @@ export function MonthCalendar({
             </p>
           ) : (
             listEvents.map((event) => (
-              <ListEventRow key={event.id} event={event} onClick={onEventClick} />
+              <ListEventRow
+                key={event.id}
+                event={event}
+                onClick={onEventClick}
+                isActiveDay={eventTouchesDay(event, today)}
+              />
             ))
           )}
         </div>
